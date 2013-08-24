@@ -40,12 +40,20 @@ namespace TenSecondHero.Activities.GamePlay
                 }
                 else if( obj.Category == "Item" )
                 {
-                    if (obj.Name == "Bomb")
-                        _entities.Add(new Bomb() { Position = obj.Position });
-                    else
-                        _entities.Add(new Object( obj.Name, obj.Size ) { Position = obj.Position } );
+                    _entities.Add(new Object( obj.Name, obj.Size ) { Position = obj.Position } );
                 }
-                else if( obj.Category == "Entrance" )
+                else if (obj.Category == "NPC")
+                {
+                    _entities.Add(new NPC(obj.Name, obj.Size) { Position = obj.Position });
+                }
+                else if( obj.Category == "Enemy" )
+                {
+                    if( obj.Name == "Bomb" )
+                    {
+                        _entities.Add(new Bomb() { Position = obj.Position });
+                    }
+                }
+                else if (obj.Category == "Checkpoint" )
                 {
                     _entities.Add(new Checkpoint(obj.Size) { Position = obj.Position } );
                 }

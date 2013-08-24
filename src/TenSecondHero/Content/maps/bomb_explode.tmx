@@ -41,7 +41,7 @@
   <object name="BoyCitizen02" type="Item" x="285" y="350" width="16" height="48"/>
   <object name="GirlCitizen01" type="Item" x="143" y="350" width="16" height="48"/>
   <object name="BoyCitizen01" type="Item" x="75" y="350" width="16" height="48"/>
-  <object name="Bomb" type="Item" x="223" y="378" width="16" height="16"/>
-  <object name="Exit" type="Entrance" x="514" y="128" width="64" height="32"/>
+  <object name="Bomb" type="Enemy" x="223" y="378" width="16" height="16"/>
+  <object name="Exit" type="Checkpoint" x="514" y="128" width="64" height="32"/>
  </objectgroup>
 </map>
