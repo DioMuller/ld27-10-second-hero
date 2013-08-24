@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using MonoGameLib.Core.Entities;
 using MonoGameLib.Tiled;
 using System;
@@ -22,7 +23,8 @@ namespace TenSecondHero.Behaviors
 
         new BaseEntity Entity { get { return (BaseEntity)base.Entity; } }
 
-        public WalkLeftRightBehavior(Map map, BaseEntity parent) : base(parent)
+        public WalkLeftRightBehavior(Map map, BaseEntity parent)
+            : base(parent)
         {
             var rnd = new Random(Id++ + Environment.TickCount);
             _walkDirection = _minSpeed + (float)(rnd.NextDouble()) * (_maxSpeed - _minSpeed);
@@ -40,6 +42,11 @@ namespace TenSecondHero.Behaviors
                 _walkDirection *= -1;
                 Entity.Position = Entity.LastPosition + new Vector2(_walkDirection, 0);
             }
+
+            if (_walkDirection < 0)
+                Entity.Sprite.Effect = SpriteEffects.FlipHorizontally;
+            else
+                Entity.Sprite.Effect = SpriteEffects.None;
         }
     }
 }
