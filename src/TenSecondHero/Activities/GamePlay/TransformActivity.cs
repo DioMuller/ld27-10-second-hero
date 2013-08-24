@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using TenSecondHero.Entities;
 
-namespace TenSecondHero.Activities
+namespace TenSecondHero.Activities.GamePlay
 {
     class TransformActivity : GamePlayActivity
     {

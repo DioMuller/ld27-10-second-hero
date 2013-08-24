@@ -40,7 +40,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Activities\Base\GamePlayActivity.cs" />
-    <Compile Include="Activities\TransformActivity.cs" />
+    <Compile Include="Activities\GamePlay\BombExplodeActivity.cs" />
+    <Compile Include="Activities\GamePlay\TransformActivity.cs" />
     <Compile Include="Behaviors\ControllableBehavior.cs" />
     <Compile Include="Behaviors\PickableBehavior.cs" />
     <Compile Include="Entities\BaseEntity.cs" />

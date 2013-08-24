@@ -20,7 +20,6 @@ namespace TenSecondHero.Activities
         protected Map _levelMap;
         protected List<BaseEntity> _entities;
 
-
         public GamePlayActivity(Game game, string map) : base(game) 
         {
             _levelMap = MapLoader.LoadMap(map);
