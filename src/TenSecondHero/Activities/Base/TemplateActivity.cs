@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using TenSecondHero.Core;
+using MonoGameLib.Tiled;
 
 namespace TenSecondHero.Activities
 {
@@ -9,6 +10,12 @@ namespace TenSecondHero.Activities
     /// </summary>
     class TemplateActivity : Activity<bool>
     {
+        /// <summary>
+        /// Level map.
+        /// </summary>
+        private Map _levelMap;
+
+
         public TemplateActivity(Game game) : base(game) { }
 
         /// <summary>
