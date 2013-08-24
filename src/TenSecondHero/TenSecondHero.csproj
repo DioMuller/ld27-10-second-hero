@@ -44,6 +44,7 @@
     <Compile Include="Activities\GamePlay\CatActivity.cs" />
     <Compile Include="Activities\GamePlay\ArrestThiefActivity.cs" />
     <Compile Include="Activities\GamePlay\GrandmaCrossingActivity.cs" />
+    <Compile Include="Activities\GamePlay\GrandmaFriendActivity.cs" />
     <Compile Include="Activities\GamePlay\SaveActivity02.cs" />
     <Compile Include="Activities\GamePlay\SaveActivity01.cs" />
     <Compile Include="Activities\TitleActivity.cs" />
@@ -219,6 +220,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\maps\help_grandma.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\maps\grandma_friend.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

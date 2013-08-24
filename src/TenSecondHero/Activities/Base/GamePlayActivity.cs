@@ -137,7 +137,7 @@ namespace TenSecondHero.Activities.GamePlay
             Vector2 textSize = _font.MeasureString(Description);
             Vector2 position = new Vector2( 10, Game.Window.ClientBounds.Height - textSize.Y - 10);
             SpriteBatch.DrawString(_font, Description, position, Color.White);
-            SpriteBatch.DrawString(_font, Game.RemainingTime.Seconds.ToString(), Vector2.One * 5, Color.LightGray); 
+            SpriteBatch.DrawString(_font, Game.RemainingTime.Seconds.ToString(), Vector2.One * 5, Color.Red); 
 
             SpriteBatch.End();
         }
