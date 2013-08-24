@@ -21,15 +21,17 @@ namespace TenSecondHero.Activities.GamePlay
         /// </summary>
         protected Map _levelMap;
         protected List<BaseEntity> _entities;
-        protected Stack<BaseEntity> _toRemoveEntity;
+        protected Stack<BaseEntity> _toRemoveEntity, _toAddEntity;
 
         protected Texture2D _background;
 
-        public GamePlayActivity(Game game, string map, string background) : base(game) 
+        public GamePlayActivity(Game game, string map, string background)
+            : base(game)
         {
             _levelMap = MapLoader.LoadMap(map);
             _entities = new List<BaseEntity>();
             _toRemoveEntity = new Stack<BaseEntity>();
+            _toAddEntity = new Stack<BaseEntity>();
             _background = game.Content.Load<Texture2D>(background);
 
             foreach (GameObject obj in _levelMap.Objects)
@@ -38,24 +40,24 @@ namespace TenSecondHero.Activities.GamePlay
                 {
                     _entities.Add(new Player() { Position = obj.Position });
                 }
-                else if( obj.Category == "Item" )
+                else if (obj.Category == "Item")
                 {
-                    _entities.Add(new Object( obj.Name, obj.Size ) { Position = obj.Position } );
+                    _entities.Add(new Object(obj.Name, obj.Size) { Position = obj.Position });
                 }
                 else if (obj.Category == "NPC")
                 {
                     _entities.Add(new NPC(obj.Name, obj.Size) { Position = obj.Position });
                 }
-                else if( obj.Category == "Enemy" )
+                else if (obj.Category == "Enemy")
                 {
-                    if( obj.Name == "Bomb" )
+                    if (obj.Name == "Bomb")
                     {
-                        _entities.Add(new Bomb() { Position = obj.Position });
+                        _entities.Add(new Bomb(this) { Position = obj.Position });
                     }
                 }
-                else if (obj.Category == "Checkpoint" )
+                else if (obj.Category == "Checkpoint")
                 {
-                    _entities.Add(new Checkpoint(obj.Size) { Position = obj.Position } );
+                    _entities.Add(new Checkpoint(obj.Size) { Position = obj.Position });
                 }
             }
         }
@@ -70,34 +72,39 @@ namespace TenSecondHero.Activities.GamePlay
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit(LevelResult.RestartGame);
 
-            while( _toRemoveEntity.Count != 0 )
+            while (_toAddEntity.Count != 0)
+            {
+                _entities.Add(_toAddEntity.Pop());
+            }
+
+            while (_toRemoveEntity.Count != 0)
             {
                 _entities.Remove(_toRemoveEntity.Pop());
             }
 
-            foreach( var ent in _entities )
+            foreach (var ent in _entities)
             {
                 ent.Update(gameTime);
 
-                if( _levelMap.Collides(ent.BoundingBox) )
+                if (_levelMap.Collides(ent.BoundingBox))
                 {
                     ent.Position = ent.LastPosition;
                 }
 
-                if( ent is Player )
+                if (ent is Player)
                 {
-                    foreach( var obj in _entities )
+                    foreach (var obj in _entities)
                     {
-                        if( obj.BoundingBox.Intersects(ent.BoundingBox) )
+                        if (obj.BoundingBox.Intersects(ent.BoundingBox))
                         {
                             obj.Parent = ent;
                         }
                     }
                 }
 
-                if( ent is Object )
+                if (ent is Object)
                 {
-                    foreach (var chk in _entities.OfType<Checkpoint>())
+                    foreach (var chk in _entities.Where(e => e != ent && (e is Checkpoint || e is Explosion)))
                     {
                         if (chk.BoundingBox.Intersects(ent.BoundingBox))
                         {
@@ -131,6 +138,24 @@ namespace TenSecondHero.Activities.GamePlay
         public virtual void OnTimeout()
         {
             Exit(LevelResult.Failed);
+        }
+
+        /// <summary>
+        /// Add an entity to the level.
+        /// </summary>
+        /// <param name="entity">Entity to be added.</param>
+        public void AddEntity(BaseEntity entity)
+        {
+            _toAddEntity.Push(entity);
+        }
+
+        /// <summary>
+        /// Removes one entity from the level.
+        /// </summary>
+        /// <param name="entity">Entity to be removed.</param>
+        internal void RemoveEntity(BaseEntity entity)
+        {
+            _toRemoveEntity.Push(entity);
         }
     }
 }

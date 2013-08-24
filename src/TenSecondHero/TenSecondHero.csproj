@@ -52,6 +52,7 @@
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Checkpoint.cs" />
     <Compile Include="Entities\Bomb.cs" />
+    <Compile Include="Entities\Explosion.cs" />
     <Compile Include="Entities\NPC.cs" />
     <Compile Include="Entities\Object.cs" />
     <Compile Include="Entities\Player.cs" />

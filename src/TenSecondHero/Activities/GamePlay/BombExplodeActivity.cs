@@ -13,6 +13,8 @@ namespace TenSecondHero.Activities.GamePlay
 {
     class BombExplodeActivity : GamePlayActivity
     {
+        bool _exploding;
+
         public BombExplodeActivity(Game game)
             : base(game, "Content/maps/bomb_explode.tmx", "images/background_morningsky.png")
         {
@@ -26,10 +28,17 @@ namespace TenSecondHero.Activities.GamePlay
         {
             base.Update(gameTime);
 
-            if (_entities.OfType<Bomb>().Count() <= 0)
+            if (!_exploding && _entities.OfType<Bomb>().Count() <= 0)
             {
                 Exit(LevelResult.Succeded);
             }
+        }
+
+        public async override void OnTimeout()
+        {
+            _exploding = true;
+            await _entities.OfType<Bomb>().First().Explode();
+            base.OnTimeout();
         }
     }
 }
