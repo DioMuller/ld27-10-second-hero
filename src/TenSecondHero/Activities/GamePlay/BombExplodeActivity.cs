@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework;
 using TenSecondHero.Entities;
 using TenSecondHero.Behaviors;
 using TenSecondHero.Core;
-using TenSecondHero.Activities.Base;
 
 namespace TenSecondHero.Activities.GamePlay
 {
@@ -30,7 +29,7 @@ namespace TenSecondHero.Activities.GamePlay
 
             if (!_exploding && _entities.OfType<Bomb>().Count() <= 0)
             {
-                Exit(LevelResult.Succeded);
+                Exit(true);
             }
         }
 

@@ -41,7 +41,6 @@
   <ItemGroup>
     <Compile Include="Activities\Base\GamePlayActivity.cs" />
     <Compile Include="Activities\GamePlay\BombExplodeActivity.cs" />
-    <Compile Include="Activities\Base\LevelResult.cs" />
     <Compile Include="Activities\GamePlay\CatActivity.cs" />
     <Compile Include="Activities\GamePlay\SaveActivity02.cs" />
     <Compile Include="Activities\GamePlay\SaveActivity01.cs" />

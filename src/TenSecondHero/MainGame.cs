@@ -13,7 +13,7 @@ using TenSecondHero.Activities;
 using MonoGameLib.Core;
 using TenSecondHero.Activities.GamePlay;
 using System.Threading;
-using TenSecondHero.Activities.Base;
+using System.Linq;
 #endregion
 
 namespace TenSecondHero
@@ -96,11 +96,8 @@ namespace TenSecondHero
         /// <returns>true</returns>
         async Task<bool> Play()
         {
-#if !DEBUG
-            int startLevel = 0;
-#else
-            int startLevel = 0;
-#endif
+            int levelCount = 4;
+            var rnd = new Random(Environment.TickCount);
 
             // TODO: Run logo/intro, start screen, gameplay/settings.
             //await Run(new IntroActivity(this));
@@ -108,21 +105,16 @@ namespace TenSecondHero
             {
                 await Run(new TitleActivity(this));
 
+                var levelOrder = Enumerable.Range(0, levelCount).OrderBy(n => rnd.Next());
                 var gameTimeoutTask = Task.Delay(TimeSpan.FromSeconds(10));
 
-                int currentLevelNumber = startLevel;
-
-                var level = LoadLevel(currentLevelNumber);
-
-                while (level != null)
+                foreach (var levelNumber in levelOrder)
                 {
-                    var result = await RunLevel(level, gameTimeoutTask);
+                    var level = LoadLevel(levelNumber);
+                    var succeded = await RunLevel(level, gameTimeoutTask);
 
-                    if (result == LevelResult.Succeded)
-                        currentLevelNumber++;
-                    else break;
-
-                    level = LoadLevel(currentLevelNumber);
+                    if (!succeded)
+                        break;
                 }
 
                 //if (!gameTimeoutTask.IsCompleted)
@@ -133,7 +125,7 @@ namespace TenSecondHero
             return true;
         }
 
-        private async Task<LevelResult> RunLevel(GamePlayActivity level, Task timeOut)
+        private async Task<bool> RunLevel(GamePlayActivity level, Task timeOut)
         {
             var runLevel = Run(level);
 

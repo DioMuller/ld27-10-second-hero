@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using TenSecondHero.Entities;
-using TenSecondHero.Activities.Base;
 
 namespace TenSecondHero.Activities.GamePlay
 {
@@ -21,7 +20,7 @@ namespace TenSecondHero.Activities.GamePlay
 
             if( _entities.OfType<TenSecondHero.Entities.Object>().Count() <= 0 )
             {
-                Exit(LevelResult.Succeded);
+                Exit(true);
             }
         }
     }
