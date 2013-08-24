@@ -84,6 +84,7 @@ namespace TenSecondHero
                 case 0: return new SaveActivity01(this);
                 case 1: return new BombExplodeActivity(this);
                 case 2: return new CatActivity(this);
+                case 3: return new SaveActivity02(this);
             }
             return null;
         }
