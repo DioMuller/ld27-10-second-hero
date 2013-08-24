@@ -6,6 +6,7 @@ using MonoGameLib.Core.Entities;
 using System.Collections.Generic;
 using TenSecondHero.Entities;
 using System.Linq;
+using TenSecondHero.Activities.Base;
 
 namespace TenSecondHero.Activities.GamePlay
 {

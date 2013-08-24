@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using TenSecondHero.Entities;
+using TenSecondHero.Activities.Base;
 
 namespace TenSecondHero.Activities.GamePlay
 {

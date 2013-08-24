@@ -13,6 +13,7 @@ using TenSecondHero.Activities;
 using MonoGameLib.Core;
 using TenSecondHero.Activities.GamePlay;
 using System.Threading;
+using TenSecondHero.Activities.Base;
 #endregion
 
 namespace TenSecondHero
