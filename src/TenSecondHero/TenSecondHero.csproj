@@ -40,7 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Activities\Base\GamePlayActivity.cs" />
-    <Compile Include="Activities\TransformActivity.cs" />
+    <Compile Include="Activities\SaveActivity01.cs" />
     <Compile Include="Behaviors\ControllableBehavior.cs" />
     <Compile Include="Behaviors\PickableBehavior.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
@@ -85,10 +85,25 @@
     <Content Include="Content\sprites\10sechero.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\sprites\boycitizen01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\boycitizen02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\girlcitizen01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\girlcitizen02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\sprites\human.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\tiles\tileset.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tiles\tileset_bricks.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
@@ -127,6 +142,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\tilesets\tileset.tsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tilesets\tileset_bricks.tsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

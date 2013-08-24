@@ -8,9 +8,9 @@ using TenSecondHero.Entities;
 
 namespace TenSecondHero.Activities
 {
-    class TransformActivity : GamePlayActivity
+    class SaveActivity01 : GamePlayActivity
     {
-        public TransformActivity(Game game) : base(game, "Content/maps/transform.tmx")
+        public SaveActivity01(Game game) : base(game, "Content/maps/transform.tmx")
         {
         }
     }

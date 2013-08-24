@@ -82,7 +82,7 @@ namespace TenSecondHero
         async Task<bool> Play()
         {
             //*
-            await Run(new TransformActivity(this));
+            await Run(new SaveActivity01(this));
             /*/
             // TODO: Run logo/intro, start screen, gameplay/settings.
             await Run(new IntroActivity(this));
