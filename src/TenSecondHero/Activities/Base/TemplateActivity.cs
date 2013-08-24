@@ -24,6 +24,18 @@ namespace TenSecondHero.Activities
         {
             _levelMap = MapLoader.LoadMap(map);
             _entities = new List<BaseEntity>();
+
+            foreach (GameObject obj in _levelMap.Objects)
+            {
+                if (obj.Category == "Player")
+                {
+                    _entities.Add(new Player() { Position = obj.Position });
+                }
+                else if( obj.Category == "Item" )
+                {
+                    _entities.Add(new Object( obj.Name, obj.Size ) { Position = obj.Position } );
+                }
+            }
         }
 
         /// <summary>
