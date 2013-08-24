@@ -6,6 +6,7 @@ using MonoGameLib.Core.Entities;
 using System.Collections.Generic;
 using TenSecondHero.Entities;
 using System.Linq;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace TenSecondHero.Activities.GamePlay
 {
@@ -21,11 +22,14 @@ namespace TenSecondHero.Activities.GamePlay
         protected List<BaseEntity> _entities;
         protected Stack<BaseEntity> _toRemoveEntity;
 
-        public GamePlayActivity(Game game, string map) : base(game) 
+        protected Texture2D _background;
+
+        public GamePlayActivity(Game game, string map, string background) : base(game) 
         {
             _levelMap = MapLoader.LoadMap(map);
             _entities = new List<BaseEntity>();
             _toRemoveEntity = new Stack<BaseEntity>();
+            _background = game.Content.Load<Texture2D>(background);
 
             foreach (GameObject obj in _levelMap.Objects)
             {
@@ -70,7 +74,7 @@ namespace TenSecondHero.Activities.GamePlay
 
                 if( ent is Player )
                 {
-                    foreach( var obj in _entities.OfType<Object>() )
+                    foreach( var obj in _entities )
                     {
                         if( obj.BoundingBox.Intersects(ent.BoundingBox) )
                         {
@@ -101,7 +105,7 @@ namespace TenSecondHero.Activities.GamePlay
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             SpriteBatch.Begin();
-
+            SpriteBatch.Draw(_background, Vector2.Zero, Color.White);
             _levelMap.Draw(gameTime, SpriteBatch, Vector2.Zero);
 
             foreach (var ent in _entities)
