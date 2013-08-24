@@ -104,7 +104,7 @@ namespace TenSecondHero.Activities.GamePlay
 
                 if (ent is Object)
                 {
-                    foreach (var chk in _entities.OfType<Checkpoint>())
+                    foreach (var chk in _entities.Where(e => e != ent && (e is Checkpoint || e is Explosion)))
                     {
                         if (chk.BoundingBox.Intersects(ent.BoundingBox))
                         {
