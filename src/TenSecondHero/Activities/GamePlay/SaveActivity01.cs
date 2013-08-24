@@ -20,7 +20,7 @@ namespace TenSecondHero.Activities.GamePlay
 
             if( _entities.OfType<TenSecondHero.Entities.Object>().Count() <= 0 )
             {
-                Exit(true);
+                Exit(LevelResult.Succeded);
             }
         }
     }
