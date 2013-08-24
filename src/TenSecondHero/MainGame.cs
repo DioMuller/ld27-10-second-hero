@@ -103,6 +103,7 @@ namespace TenSecondHero
             //await Run(new IntroActivity(this));
             while (true)
             {
+                await Run(new TitleActivity(this));
                 /*StartOptions startOption;
                 do
                 {

@@ -17,7 +17,7 @@ namespace TenSecondHero.Activities
         /// </summary>
         public Texture2D _titleTexture;
 
-        public TitleActivity(Game game, string map) : base(game) 
+        public TitleActivity(Game game) : base(game) 
         {
             _titleTexture = game.Content.Load<Texture2D>("images/title.png");
         }
