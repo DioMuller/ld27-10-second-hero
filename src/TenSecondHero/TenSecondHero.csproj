@@ -49,6 +49,7 @@
     <Compile Include="Behaviors\WalkLeftRightBehavior.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Checkpoint.cs" />
+    <Compile Include="Entities\Bomb.cs" />
     <Compile Include="Entities\Object.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="MainGame.cs" />

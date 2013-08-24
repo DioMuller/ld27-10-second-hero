@@ -26,7 +26,7 @@ namespace TenSecondHero.Activities.GamePlay
         {
             base.Update(gameTime);
 
-            if (_entities.OfType<TenSecondHero.Entities.Object>().Where(e => e.Name == "Bomb").Count() <= 0)
+            if (_entities.OfType<Bomb>().Count() <= 0)
             {
                 Exit(LevelResult.Succeded);
             }
