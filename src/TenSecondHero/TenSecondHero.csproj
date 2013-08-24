@@ -103,7 +103,9 @@
     <Content Include="Content\bgm\save me.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\images\background_city01.png" />
+    <Content Include="Content\images\background_city01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\images\background_morningsky.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -126,7 +126,7 @@ namespace TenSecondHero.Activities.GamePlay
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.BlueViolet);
 
             SpriteBatch.Begin();
             SpriteBatch.Draw(_background, Vector2.Zero, Color.White);

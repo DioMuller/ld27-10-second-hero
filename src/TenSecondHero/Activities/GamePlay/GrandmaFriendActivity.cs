@@ -10,7 +10,7 @@ namespace TenSecondHero.Activities.GamePlay
     class GrandmaFriendActivity : GamePlayActivity
     {
         public GrandmaFriendActivity(MainGame game)
-            : base(game, "Content/maps/grandma_friend.tmx", "images/background_nightsky.png")
+            : base(game, "Content/maps/grandma_friend.tmx", "images/background_city01.png")
         {
         }
 
