@@ -2,6 +2,9 @@
 using Microsoft.Xna.Framework.Input;
 using TenSecondHero.Core;
 using MonoGameLib.Tiled;
+using MonoGameLib.Core.Entities;
+using System.Collections.Generic;
+using TenSecondHero.Entities;
 
 namespace TenSecondHero.Activities
 {
@@ -13,12 +16,14 @@ namespace TenSecondHero.Activities
         /// <summary>
         /// Level map.
         /// </summary>
-        private Map _levelMap;
+        protected Map _levelMap;
+        protected List<BaseEntity> _entities;
 
 
         public TemplateActivity(Game game, string map) : base(game) 
         {
-            _levelMap = MapLoader.LoadMap(map); 
+            _levelMap = MapLoader.LoadMap(map);
+            _entities = new List<BaseEntity>();
         }
 
         /// <summary>
@@ -31,7 +36,15 @@ namespace TenSecondHero.Activities
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit(true);
 
-            // TODO: Add your update logic here
+            foreach( var ent in _entities )
+            {
+                ent.Update(gameTime);
+
+                if( _levelMap.Collides(ent.BoundingBox) )
+                {
+                    ent.Position = ent.LastPosition;
+                }
+            }
         }
 
         /// <summary>
@@ -45,6 +58,11 @@ namespace TenSecondHero.Activities
             SpriteBatch.Begin();
             // TODO: Add your drawing code here
             _levelMap.Draw(gameTime, SpriteBatch, Vector2.Zero);
+
+            foreach (var ent in _entities)
+            {
+                ent.Draw(gameTime, SpriteBatch);
+            }
 
             SpriteBatch.End();
         }
