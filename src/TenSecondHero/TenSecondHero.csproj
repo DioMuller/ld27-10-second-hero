@@ -43,12 +43,14 @@
     <Compile Include="Activities\GamePlay\BombExplodeActivity.cs" />
     <Compile Include="Activities\GamePlay\CatActivity.cs" />
     <Compile Include="Activities\GamePlay\ArrestThiefActivity.cs" />
+    <Compile Include="Activities\GamePlay\TrainAccidentActivity.cs" />
     <Compile Include="Activities\GamePlay\GrandmaCrossingActivity.cs" />
     <Compile Include="Activities\GamePlay\GrandmaFriendActivity.cs" />
     <Compile Include="Activities\GamePlay\SaveActivity02.cs" />
     <Compile Include="Activities\GamePlay\SaveActivity01.cs" />
     <Compile Include="Activities\TitleActivity.cs" />
     <Compile Include="Behaviors\ControllableBehavior.cs" />
+    <Compile Include="Behaviors\MoveStraightBehavior.cs" />
     <Compile Include="Behaviors\PickableBehavior.cs" />
     <Compile Include="Behaviors\WalkLeftRightBehavior.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
@@ -160,10 +162,16 @@
     <Content Include="Content\sprites\human.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\sprites\railroad.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\sprites\strongman01.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\sprites\thief01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\train.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\tiles\tileset.png">
@@ -173,6 +181,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\tiles\tileset_squareelements02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tiles\tiles_floor.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tiles\tile_railroad.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
@@ -235,6 +249,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\maps\grandma_friend.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\maps\train_accident.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
