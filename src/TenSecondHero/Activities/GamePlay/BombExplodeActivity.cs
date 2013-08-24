@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using TenSecondHero.Entities;
 using TenSecondHero.Behaviors;
 using TenSecondHero.Core;
+using MonoGameLib.Core;
 
 namespace TenSecondHero.Activities.GamePlay
 {
@@ -36,6 +37,7 @@ namespace TenSecondHero.Activities.GamePlay
         public async override void OnTimeout()
         {
             _exploding = true;
+            SoundManager.PlaySound("explosion");
             await _entities.OfType<Bomb>().First().Explode();
             base.OnTimeout();
         }

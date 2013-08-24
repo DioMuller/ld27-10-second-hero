@@ -40,6 +40,7 @@ namespace TenSecondHero
             GameContent.Initialize(this.Content);
 
             Window.Title = "LD27 - Ten Seconds Hero!";
+            SoundManager.SEFolder = "se";
             SoundManager.BGMFolder = "bgm";
         }
 

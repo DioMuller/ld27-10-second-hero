@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using TenSecondHero.Entities;
 using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGameLib.Core;
 
 namespace TenSecondHero.Activities.GamePlay
 {
@@ -95,10 +96,11 @@ namespace TenSecondHero.Activities.GamePlay
 
                 if (ent is Player)
                 {
-                    foreach (var obj in _entities)
+                    foreach (var obj in _entities.OfType<Object>() )
                     {
                         if (obj.BoundingBox.Intersects(ent.BoundingBox))
                         {
+                            if (obj.Parent == null) SoundManager.PlaySound("pickup");
                             obj.Parent = ent;
                         }
                     }
@@ -110,6 +112,7 @@ namespace TenSecondHero.Activities.GamePlay
                     {
                         if (chk.BoundingBox.Intersects(ent.BoundingBox))
                         {
+                            if (chk is Checkpoint) SoundManager.PlaySound("drop");
                             _toRemoveEntity.Push(ent);
                         }
                     }
