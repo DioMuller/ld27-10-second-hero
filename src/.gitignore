@@ -1,0 +1,11 @@
+Release
+Debug
+*.dll
+*.exe
+*.sdf
+*.opensdf
+*.suo
+~$*
+*.vsp
+*.vspx
+*.psess
