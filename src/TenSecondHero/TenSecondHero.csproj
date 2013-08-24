@@ -42,6 +42,7 @@
     <Compile Include="Activities\Base\TemplateActivity.cs" />
     <Compile Include="Activities\TransformActivity.cs" />
     <Compile Include="Behaviors\ControllableBehavior.cs" />
+    <Compile Include="Behaviors\PickableBehavior.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Object.cs" />
     <Compile Include="Entities\Player.cs" />

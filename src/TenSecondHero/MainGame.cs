@@ -30,6 +30,8 @@ namespace TenSecondHero
             Content.RootDirectory = "Content";
 
             GameContent.Initialize(this.Content);
+
+            Window.Title = "LD27 - Ten Seconds Hero!";
         }
 
         /// <summary>

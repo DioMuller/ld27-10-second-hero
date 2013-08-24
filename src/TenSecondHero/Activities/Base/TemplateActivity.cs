@@ -5,6 +5,7 @@ using MonoGameLib.Tiled;
 using MonoGameLib.Core.Entities;
 using System.Collections.Generic;
 using TenSecondHero.Entities;
+using System.Linq;
 
 namespace TenSecondHero.Activities
 {
@@ -55,6 +56,17 @@ namespace TenSecondHero.Activities
                 if( _levelMap.Collides(ent.BoundingBox) )
                 {
                     ent.Position = ent.LastPosition;
+                }
+
+                if( ent is Player )
+                {
+                    foreach( var obj in _entities.OfType<Object>() )
+                    {
+                        if( obj.BoundingBox.Intersects(ent.BoundingBox) )
+                        {
+                            obj.Parent = ent;
+                        }
+                    }
                 }
             }
         }

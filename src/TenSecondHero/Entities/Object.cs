@@ -17,7 +17,7 @@ namespace TenSecondHero.Entities
             : base()
         {
             //TODO: Add behaviors;
-            //Behaviors.Add(new ControllableBehavior(this, new KeyboardInput()));
+            Behaviors.Add(new PickableBehavior(this));
 
             Sprite = new Sprite("sprites/" + name.ToLower() + ".png", new Point((int) size.X, (int) size.Y), 0);
 
