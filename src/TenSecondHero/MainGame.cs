@@ -129,15 +129,15 @@ namespace TenSecondHero
                         break;
                     }
 
-                    var result = await Run(level);
+                    var succeded = await Run(level);
 
                     /*if (result.RestartGame)
-                        break;
+                        break;*/
 
-                    if (result.Passed)
+                    if (succeded)
                         currentLevelNumber++;
                     else
-                        extraLives--;*/
+                        extraLives--;
 
                     level = LoadLevel(currentLevelNumber);
 
