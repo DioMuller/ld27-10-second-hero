@@ -44,6 +44,7 @@
     <Compile Include="Activities\GamePlay\SaveActivity01.cs" />
     <Compile Include="Behaviors\ControllableBehavior.cs" />
     <Compile Include="Behaviors\PickableBehavior.cs" />
+    <Compile Include="Behaviors\WalkLeftRightBehavior.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Checkpoint.cs" />
     <Compile Include="Entities\Object.cs" />
@@ -87,6 +88,9 @@
     <Content Include="Content\sprites\10sechero.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\sprites\bomb.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\sprites\boycitizen01.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -94,6 +98,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\sprites\checkpoint.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\explosion.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\sprites\girlcitizen01.png">
@@ -150,6 +157,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\tilesets\tileset_bricks.tsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\maps\bomb_explode.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

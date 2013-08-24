@@ -13,9 +13,13 @@ namespace TenSecondHero.Entities
 {
     class Object : BaseEntity
     {
+        public string Name { get; private set; }
+
         public Object(string name, Vector2 size)
             : base()
         {
+            Name = name;
+
             //TODO: Add behaviors;
             Behaviors.Add(new PickableBehavior(this));
 

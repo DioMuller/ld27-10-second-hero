@@ -75,6 +75,16 @@ namespace TenSecondHero
         }
         #endregion
 
+        GamePlayActivity LoadLevel(int levelNumber)
+        {
+            switch (levelNumber)
+            {
+                case 0: return new SaveActivity01(this);
+                case 1: return new BombExplodeActivity(this);
+            }
+            return null;
+        }
+
         /// <summary>
         /// Controls the game activities sequence, from intro to ending,
         /// including gameplay and settings activity.
@@ -82,14 +92,17 @@ namespace TenSecondHero
         /// <returns>true</returns>
         async Task<bool> Play()
         {
-            //*
-            await Run(new SaveActivity01(this));
-            /*/
+#if !DEBUG
+            int startLevel = 0;
+#else
+            int startLevel = 1;
+#endif
+
             // TODO: Run logo/intro, start screen, gameplay/settings.
-            await Run(new IntroActivity(this));
+            //await Run(new IntroActivity(this));
             while (true)
             {
-                StartOptions startOption;
+                /*StartOptions startOption;
                 do
                 {
                     startOption = await Run(new StartScreenActivity(this));
@@ -100,27 +113,28 @@ namespace TenSecondHero
                 } while (startOption != StartOptions.Play);
 
                 if (startOption == StartOptions.Quit)
-                    break;
+                    break;*/
 
                 var extraLives = 3;
 
-                int currentLevelNumber = 0;
+                int currentLevelNumber = startLevel;
+
                 var level = LoadLevel(currentLevelNumber);
 
                 while (extraLives >= 0)
                 {
                     if (level == null) // If there are no more levels to run
                     {
-                        await Run(new ShowEndingActivity(this, extraLives));
+                        //await Run(new ShowEndingActivity(this, extraLives));
                         break;
                     }
 
-                    var result = await Run(level);
+                    var succeded = await Run(level);
 
-                    if (result.RestartGame)
-                        break;
+                    /*if (result.RestartGame)
+                        break;*/
 
-                    if (result.Passed)
+                    if (succeded)
                         currentLevelNumber++;
                     else
                         extraLives--;
@@ -131,9 +145,9 @@ namespace TenSecondHero
                     //    await Run(new ShowResultsActivity(this, extraLives, result));
                 }
 
-                if (extraLives < 0)
-                    await Run(new GameOverActivity(this));
-            } //*/
+                /*if (extraLives < 0)
+                    await Run(new GameOverActivity(this));*/
+            }
 
             Exit();
             return true;
