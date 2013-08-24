@@ -40,6 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Activities\Base\TemplateActivity.cs" />
+    <Compile Include="Entities\Player.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="MainGame.Core.cs">
       <DependentUpon>MainGame.cs</DependentUpon>
@@ -112,6 +113,7 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Content\fonts\DefaultFont.xnb" />
     <None Include="Content\maps\transform.tmx" />
     <None Include="Content\tilesets\tileset.tsx" />
   </ItemGroup>
