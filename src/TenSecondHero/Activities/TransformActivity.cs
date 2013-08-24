@@ -8,7 +8,7 @@ using TenSecondHero.Entities;
 
 namespace TenSecondHero.Activities
 {
-    class TransformActivity : TemplateActivity
+    class TransformActivity : GamePlayActivity
     {
         public TransformActivity(Game game) : base(game, "Content/maps/transform.tmx")
         {
