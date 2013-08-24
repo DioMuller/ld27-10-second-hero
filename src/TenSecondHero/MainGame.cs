@@ -14,6 +14,7 @@ using MonoGameLib.Core;
 using TenSecondHero.Activities.GamePlay;
 using System.Threading;
 using System.Linq;
+using System.Diagnostics;
 #endregion
 
 namespace TenSecondHero
@@ -25,6 +26,10 @@ namespace TenSecondHero
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        TaskCompletionSource<bool> timeOutCompletionTask;
+
+        public TimeSpan GameTimeOut { get; private set; }
+        public TimeSpan RemainingTime { get { return GameTimeOut - GameTime.TotalGameTime; } }
 
         public MainGame()
             : base()
@@ -106,12 +111,12 @@ namespace TenSecondHero
                 await Run(new TitleActivity(this));
 
                 var levelOrder = Enumerable.Range(0, levelCount).OrderBy(n => rnd.Next());
-                var gameTimeoutTask = Task.Delay(TimeSpan.FromSeconds(10));
 
+                var timeOutTask = StartTimeout();
                 foreach (var levelNumber in levelOrder)
                 {
                     var level = LoadLevel(levelNumber);
-                    var succeded = await RunLevel(level, gameTimeoutTask);
+                    var succeded = await RunLevel(level, timeOutTask);
 
                     if (!succeded)
                         break;
@@ -123,6 +128,13 @@ namespace TenSecondHero
 
             Exit();
             return true;
+        }
+
+        private Task StartTimeout()
+        {
+            GameTimeOut = GameTime.TotalGameTime + TimeSpan.FromSeconds(10);
+            timeOutCompletionTask = new TaskCompletionSource<bool>();
+            return timeOutCompletionTask.Task;
         }
 
         private async Task<bool> RunLevel(GamePlayActivity level, Task timeOut)

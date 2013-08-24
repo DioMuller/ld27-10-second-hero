@@ -26,7 +26,7 @@ namespace TenSecondHero.Activities.GamePlay
 
         public string Description { get; set; }
 
-        public GamePlayActivity(Game game, string map, string background)
+        public GamePlayActivity(MainGame game, string map, string background)
             : base(game)
         {
             _levelMap = MapLoader.LoadMap(map);

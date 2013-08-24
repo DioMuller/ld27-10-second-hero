@@ -10,7 +10,7 @@ namespace TenSecondHero.Activities.GamePlay
 {
     class SaveActivity02 : GamePlayActivity
     {
-        public SaveActivity02(Game game) : base(game, "Content/maps/save02.tmx", "images/background_nightsky.png")
+        public SaveActivity02(MainGame game) : base(game, "Content/maps/save02.tmx", "images/background_nightsky.png")
         {
         }
 

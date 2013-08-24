@@ -10,7 +10,7 @@ namespace TenSecondHero.Activities.GamePlay
 {
     class CatActivity : GamePlayActivity
     {
-        public CatActivity(Game game)
+        public CatActivity(MainGame game)
             : base(game, "Content/maps/cat.tmx", "images/background_morningsky.png")
         {
         }

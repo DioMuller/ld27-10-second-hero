@@ -24,6 +24,10 @@ namespace TenSecondHero
         ActivityRuntime currentActivity;
         #endregion
 
+        #region Properties
+        public GameTime GameTime { get; private set; }
+        #endregion
+
         #region MonoGame
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -32,6 +36,13 @@ namespace TenSecondHero
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            GameTime = gameTime;
+            if (timeOutCompletionTask != null && gameTime.TotalGameTime > GameTimeOut)
+            {
+                timeOutCompletionTask.SetResult(true);
+                timeOutCompletionTask = null;
+            }
+
             if (currentActivity != null)
             {
                 using (currentActivity.Activate())

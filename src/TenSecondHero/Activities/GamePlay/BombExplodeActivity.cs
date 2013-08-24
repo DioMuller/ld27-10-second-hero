@@ -14,7 +14,7 @@ namespace TenSecondHero.Activities.GamePlay
     {
         bool _exploding;
 
-        public BombExplodeActivity(Game game)
+        public BombExplodeActivity(MainGame game)
             : base(game, "Content/maps/bomb_explode.tmx", "images/background_morningsky.png")
         {
             foreach (var ent in _entities.OfType<Entities.Object>().Where(e => e.Name.Contains("Citizen")))

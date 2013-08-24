@@ -18,7 +18,7 @@ namespace TenSecondHero.Core
             Action<GameTime> update;
             Action<GameTime> draw;
 
-            public DeferedLevel(Game game, Func<Task<T>> run, Action<GameTime> update, Action<GameTime> draw)
+            public DeferedLevel(MainGame game, Func<Task<T>> run, Action<GameTime> update, Action<GameTime> draw)
                 : base(game)
             {
                 this.update = update;
@@ -48,7 +48,7 @@ namespace TenSecondHero.Core
         #endregion
 
         #region Static
-        public static Activity<T> Create(Game game, Func<Task<T>> play = null, Action<GameTime> update = null, Action<GameTime> draw = null)
+        public static Activity<T> Create(MainGame game, Func<Task<T>> play = null, Action<GameTime> update = null, Action<GameTime> draw = null)
         {
             return new DeferedLevel(game, play, update, draw);
         }
@@ -59,14 +59,14 @@ namespace TenSecondHero.Core
         #endregion
 
         #region Properties
-        protected Game Game { get; private set; }
+        protected MainGame Game { get; private set; }
         protected ContentManager Content { get { return Game == null ? null : Game.Content; } }
         protected GraphicsDevice GraphicsDevice { get { return Game == null ? null : Game.GraphicsDevice; } }
         protected SpriteBatch SpriteBatch { get; private set; }
         #endregion
 
         #region Constructors
-        public Activity(Game game)
+        public Activity(MainGame game)
         {
             Game = game;
             SpriteBatch = new SpriteBatch(GraphicsDevice);
