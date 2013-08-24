@@ -95,7 +95,7 @@ namespace TenSecondHero
 #if !DEBUG
             int startLevel = 0;
 #else
-            int startLevel = 1;
+            int startLevel = 0;
 #endif
 
             // TODO: Run logo/intro, start screen, gameplay/settings.
