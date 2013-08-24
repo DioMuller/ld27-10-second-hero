@@ -81,10 +81,10 @@ namespace TenSecondHero
         {
             switch (levelNumber)
             {
-                case 0: return new SaveActivity01(this);
-                case 1: return new BombExplodeActivity(this);
-                case 2: return new CatActivity(this);
-                case 3: return new SaveActivity02(this);
+                case 0: return new SaveActivity01(this) { Description = "Save the boy!" };
+                case 1: return new BombExplodeActivity(this) { Description = "Discard the bomb!" };
+                case 2: return new CatActivity(this) { Description = "Rescue the kitty!" };
+                case 3: return new SaveActivity02(this) { Description = "Save everyone!" };
             }
             return null;
         }
