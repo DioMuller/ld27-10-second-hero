@@ -84,7 +84,9 @@
     <Content Include="Content\sprites\human.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\tiles\tileset.png" />
+    <Content Include="Content\tiles\tileset.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icon.ico" />
     <Content Include="lib\x64\OpenAL32.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -114,9 +116,15 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Content\fonts\DefaultFont.xnb" />
-    <None Include="Content\maps\transform.tmx" />
-    <None Include="Content\tilesets\tileset.tsx" />
+    <Content Include="Content\fonts\DefaultFont.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\maps\transform.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tilesets\tileset.tsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\submodule\monogame-aux-lib\src\MonoGameLib.Core\MonoGameLib.Core.csproj">

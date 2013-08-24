@@ -9,7 +9,7 @@ namespace TenSecondHero.Activities
 {
     class TransformActivity : TemplateActivity
     {
-        public TransformActivity(Game game) : base(game, "maps/transform.tmx")
+        public TransformActivity(Game game) : base(game, "Content/maps/transform.tmx")
         {
         }
     }

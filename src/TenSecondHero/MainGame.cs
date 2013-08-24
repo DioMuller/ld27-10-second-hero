@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using System.Threading.Tasks;
 using TenSecondHero.Core;
 using TenSecondHero.Activities;
+using MonoGameLib.Core;
 #endregion
 
 namespace TenSecondHero
@@ -27,6 +28,8 @@ namespace TenSecondHero
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            GameContent.Initialize(this.Content);
         }
 
         /// <summary>

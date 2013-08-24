@@ -42,8 +42,11 @@ namespace TenSecondHero.Activities
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            SpriteBatch.Begin();
             // TODO: Add your drawing code here
             _levelMap.Draw(gameTime, SpriteBatch, Vector2.Zero);
+
+            SpriteBatch.End();
         }
     }
 }

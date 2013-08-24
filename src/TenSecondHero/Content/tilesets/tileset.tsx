@@ -6,7 +6,7 @@
   <terrain name="Full" tile="-1"/>
  </terraintypes>
  <tile id="0" terrain="1,1,1,1"/>
- <tile id="1" terrain=",1,,1"/>
- <tile id="2" terrain="1,,1,"/>
+ <tile id="1" terrain="0,1,0,1"/>
+ <tile id="2" terrain="1,0,1,0"/>
  <tile id="3" terrain="1,1,1,1"/>
 </tileset>
