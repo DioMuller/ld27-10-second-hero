@@ -105,18 +105,6 @@ namespace TenSecondHero
             while (true)
             {
                 await Run(new TitleActivity(this));
-                /*StartOptions startOption;
-                do
-                {
-                    startOption = await Run(new StartScreenActivity(this));
-                    if (startOption == StartOptions.Quit)
-                        break;
-                    if (startOption == StartOptions.Help)
-                        await Run(new HelpScreenActivity(this));
-                } while (startOption != StartOptions.Play);
-
-                if (startOption == StartOptions.Quit)
-                    break;*/
 
                 var extraLives = 3;
 
