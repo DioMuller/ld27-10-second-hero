@@ -19,11 +19,13 @@ namespace TenSecondHero.Activities
         /// </summary>
         protected Map _levelMap;
         protected List<BaseEntity> _entities;
+        protected Stack<BaseEntity> _toRemoveEntity;
 
         public GamePlayActivity(Game game, string map) : base(game) 
         {
             _levelMap = MapLoader.LoadMap(map);
             _entities = new List<BaseEntity>();
+            _toRemoveEntity = new Stack<BaseEntity>();
 
             foreach (GameObject obj in _levelMap.Objects)
             {
@@ -34,6 +36,10 @@ namespace TenSecondHero.Activities
                 else if( obj.Category == "Item" )
                 {
                     _entities.Add(new Object( obj.Name, obj.Size ) { Position = obj.Position } );
+                }
+                else if( obj.Category == "Entrance" )
+                {
+                    _entities.Add(new Checkpoint(obj.Size) { Position = obj.Position } );
                 }
             }
         }
@@ -47,6 +53,11 @@ namespace TenSecondHero.Activities
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit(true);
+
+            while( _toRemoveEntity.Count != 0 )
+            {
+                _entities.Remove(_toRemoveEntity.Pop());
+            }
 
             foreach( var ent in _entities )
             {
@@ -67,6 +78,17 @@ namespace TenSecondHero.Activities
                         }
                     }
                 }
+
+                if( ent is Object )
+                {
+                    foreach (var chk in _entities.OfType<Checkpoint>())
+                    {
+                        if (chk.BoundingBox.Intersects(ent.BoundingBox))
+                        {
+                            _toRemoveEntity.Push(ent);
+                        }
+                    }
+                }
             }
         }
 
@@ -79,7 +101,7 @@ namespace TenSecondHero.Activities
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             SpriteBatch.Begin();
-            // TODO: Add your drawing code here
+
             _levelMap.Draw(gameTime, SpriteBatch, Vector2.Zero);
 
             foreach (var ent in _entities)

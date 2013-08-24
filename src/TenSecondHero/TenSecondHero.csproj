@@ -45,6 +45,7 @@
     <Compile Include="Behaviors\ControllableBehavior.cs" />
     <Compile Include="Behaviors\PickableBehavior.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\Checkpoint.cs" />
     <Compile Include="Entities\Object.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="MainGame.cs" />
@@ -90,6 +91,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\sprites\boycitizen02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\checkpoint.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\sprites\girlcitizen01.png">
@@ -139,7 +143,7 @@
     <Content Include="Content\fonts\DefaultFont.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\maps\transform.tmx">
+    <Content Include="Content\maps\save01.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\tilesets\tileset.tsx">
