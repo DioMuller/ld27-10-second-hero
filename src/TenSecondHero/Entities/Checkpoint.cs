@@ -10,9 +10,9 @@ namespace TenSecondHero.Entities
 {
     class Checkpoint : BaseEntity
     {
-        public Checkpoint(Vector2 size) : base()
+        public Checkpoint(Vector2 size, string name) : base()
         {
-            Sprite = new Sprite("sprites/checkpoint.png", new Point((int)size.X, (int)size.Y), 0);
+            Sprite = new Sprite("sprites/" + name.ToLower() + ".png", new Point((int)size.X, (int)size.Y), 0);
 
             BoundingSize = size;
 

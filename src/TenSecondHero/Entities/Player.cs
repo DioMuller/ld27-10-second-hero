@@ -8,15 +8,16 @@ using MonoGameLib.Core.Entities;
 using MonoGameLib.Core.Input;
 using MonoGameLib.Core.Sprites;
 using TenSecondHero.Behaviors;
+using MonoGameLib.Tiled;
 
 namespace TenSecondHero.Entities
 {
     class Player : BaseEntity
     {
-        public Player() : base()
+        public Player(Map map) : base()
         {
             //TODO: Add behaviors;
-            Behaviors.Add(new ControllableBehavior(this, new KeyboardInput()));
+            Behaviors.Add(new ControllableBehavior(map, this, new KeyboardInput()));
 
             Sprite = new Sprite("sprites/10sechero.png", new Point(16, 48), 0);
             Sprite.Origin = new Vector2(8, 24);

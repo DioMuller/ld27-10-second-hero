@@ -10,6 +10,8 @@ namespace TenSecondHero.Entities
 {
     class BaseEntity : Entity
     {
+        public bool CollidesWithMap { get; set; }
+
         public Vector2 BoundingSize { get; set; }
         public Rectangle BoundingBox
         {
@@ -19,5 +21,10 @@ namespace TenSecondHero.Entities
             }
         }
         public Vector2 LastPosition { get; set; }
+
+        public BaseEntity()
+        {
+            CollidesWithMap = true;
+        }
     }
 }

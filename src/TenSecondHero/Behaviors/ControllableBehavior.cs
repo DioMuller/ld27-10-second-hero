@@ -7,20 +7,24 @@ using Microsoft.Xna.Framework;
 using MonoGameLib.Core.Entities;
 using MonoGameLib.Core.Input;
 using TenSecondHero.Entities;
+using MonoGameLib.Tiled;
 
 namespace TenSecondHero.Behaviors
 {
     class ControllableBehavior : Behavior
     {
         private GenericInput _input;
+        Map _map;
 
         public BaseEntity Parent
         {
             get { return Entity as BaseEntity; }
         }
 
-        public ControllableBehavior(Entity parent, GenericInput input) : base(parent)
+        public ControllableBehavior(Map map, Entity parent, GenericInput input)
+            : base(parent)
         {
+            _map = map;
             _input = input;
         }
 
@@ -32,6 +36,8 @@ namespace TenSecondHero.Behaviors
         {
             Parent.LastPosition = Parent.Position;
             Parent.Position += _input.LeftDirectional * 8;
+            if (_map.IsOutsideBorders(Parent.BoundingBox))
+                Parent.Position = Parent.LastPosition;
         }
     }
 }

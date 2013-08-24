@@ -20,12 +20,14 @@ namespace TenSecondHero.Behaviors
 
         float _minSpeed = 1f;
         float _maxSpeed = 2;
+        bool _collideWithMap;
 
         new BaseEntity Entity { get { return (BaseEntity)base.Entity; } }
 
         public WalkLeftRightBehavior(Map map, BaseEntity parent)
             : base(parent)
         {
+            _collideWithMap = parent.CollidesWithMap;
             var rnd = new Random(Id++ + Environment.TickCount);
             _walkDirection = _minSpeed + (float)(rnd.NextDouble()) * (_maxSpeed - _minSpeed);
             if (rnd.Next(0, 2) == 0)
@@ -37,7 +39,8 @@ namespace TenSecondHero.Behaviors
         {
             Entity.LastPosition = Entity.Position;
             Entity.Position += new Vector2(_walkDirection, 0);
-            if (Map.Collides(Entity.BoundingBox))
+            if ((_collideWithMap && Map.Collides(Entity.BoundingBox)) ||
+                (!_collideWithMap && Map.IsOutsideBorders(Entity.BoundingBox)))
             {
                 _walkDirection *= -1;
                 Entity.Position = Entity.LastPosition + new Vector2(_walkDirection, 0);
