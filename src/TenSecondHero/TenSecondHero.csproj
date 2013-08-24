@@ -44,6 +44,7 @@
     <Compile Include="Activities\GamePlay\SaveActivity01.cs" />
     <Compile Include="Behaviors\ControllableBehavior.cs" />
     <Compile Include="Behaviors\PickableBehavior.cs" />
+    <Compile Include="Behaviors\WalkLeftRightBehavior.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Object.cs" />
     <Compile Include="Entities\Player.cs" />
@@ -146,6 +147,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\tilesets\tileset_bricks.tsx">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Content>
+    <Content Include="Content\maps\bomb_explode.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
