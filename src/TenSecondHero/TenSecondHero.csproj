@@ -39,13 +39,18 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Activities\TemplateActivity.cs" />
+    <Compile Include="MainGame.cs" />
+    <Compile Include="MainGame.Core.cs">
+      <DependentUpon>MainGame.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Core\Activity.cs" />
     <Compile Include="Core\ActivityRuntime.cs" />
     <Compile Include="Core\AsyncExtensions.cs" />
     <Compile Include="Core\Disposable.cs" />
     <Compile Include="Core\IActivity.cs" />
     <Compile Include="Core\SyncContext.cs" />
-    <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
