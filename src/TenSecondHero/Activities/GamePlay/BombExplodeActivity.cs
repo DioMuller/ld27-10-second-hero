@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using TenSecondHero.Entities;
 using TenSecondHero.Behaviors;
+using TenSecondHero.Core;
+using TenSecondHero.Activities.Base;
 
 namespace TenSecondHero.Activities.GamePlay
 {
@@ -17,6 +19,16 @@ namespace TenSecondHero.Activities.GamePlay
             foreach (var ent in _entities.OfType<Entities.Object>().Where(e => e.Name.Contains("Citizen")))
             {
                 ent.Behaviors.Add(new WalkLeftRightBehavior(_levelMap, ent));
+            }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            if (_entities.OfType<TenSecondHero.Entities.Object>().Where(e => e.Name == "Bomb").Count() <= 0)
+            {
+                Exit(LevelResult.Succeded);
             }
         }
     }

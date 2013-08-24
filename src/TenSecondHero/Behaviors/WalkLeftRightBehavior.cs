@@ -37,7 +37,7 @@ namespace TenSecondHero.Behaviors
         {
             Entity.LastPosition = Entity.Position;
             Entity.Position += new Vector2(_walkDirection, 0);
-            if (Map.IsOutsideBorders(Entity.BoundingBox))
+            if (Map.Collides(Entity.BoundingBox))
             {
                 _walkDirection *= -1;
                 Entity.Position = Entity.LastPosition + new Vector2(_walkDirection, 0);
