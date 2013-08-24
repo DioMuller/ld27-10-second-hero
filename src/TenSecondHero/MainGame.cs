@@ -90,6 +90,7 @@ namespace TenSecondHero
                 case 1: return new BombExplodeActivity(this) { Description = "Discard the bomb!" };
                 case 2: return new CatActivity(this) { Description = "Rescue the kitty!" };
                 case 3: return new SaveActivity02(this) { Description = "Save everyone!" };
+                case 4: return new ArrestThiefActivity(this) { Description = "Arrest the thief" };
             }
             return null;
         }
@@ -101,7 +102,7 @@ namespace TenSecondHero
         /// <returns>true</returns>
         async Task<bool> Play()
         {
-            int levelCount = 4;
+            int levelCount = 5;
             var rnd = new Random(Environment.TickCount);
 
             // TODO: Run logo/intro, start screen, gameplay/settings.

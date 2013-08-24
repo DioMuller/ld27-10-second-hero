@@ -42,6 +42,7 @@
     <Compile Include="Activities\Base\GamePlayActivity.cs" />
     <Compile Include="Activities\GamePlay\BombExplodeActivity.cs" />
     <Compile Include="Activities\GamePlay\CatActivity.cs" />
+    <Compile Include="Activities\GamePlay\ArrestThiefActivity.cs" />
     <Compile Include="Activities\GamePlay\SaveActivity02.cs" />
     <Compile Include="Activities\GamePlay\SaveActivity01.cs" />
     <Compile Include="Activities\TitleActivity.cs" />
@@ -112,10 +113,13 @@
     <Content Include="Content\sprites\boycitizen02.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\sprites\cage.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\sprites\cat.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\sprites\checkpoint.png">
+    <Content Include="Content\sprites\exit.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\sprites\explosion.png">
@@ -190,6 +194,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\maps\save02.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\maps\arrest_thief.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

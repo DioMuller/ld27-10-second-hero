@@ -40,7 +40,7 @@ namespace TenSecondHero.Activities.GamePlay
             {
                 if (obj.Category == "Player")
                 {
-                    _entities.Add(new Player() { Position = obj.Position });
+                    _entities.Add(new Player(_levelMap) { Position = obj.Position });
                 }
                 else if (obj.Category == "Item")
                 {
@@ -59,7 +59,7 @@ namespace TenSecondHero.Activities.GamePlay
                 }
                 else if (obj.Category == "Checkpoint")
                 {
-                    _entities.Add(new Checkpoint(obj.Size) { Position = obj.Position });
+                    _entities.Add(new Checkpoint(obj.Size, obj.Name) { Position = obj.Position });
                 }
             }
         }
@@ -88,7 +88,7 @@ namespace TenSecondHero.Activities.GamePlay
             {
                 ent.Update(gameTime);
 
-                if (_levelMap.Collides(ent.BoundingBox))
+                if (ent.CollidesWithMap && _levelMap.Collides(ent.BoundingBox))
                 {
                     ent.Position = ent.LastPosition;
                 }
