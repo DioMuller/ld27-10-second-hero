@@ -13,5 +13,15 @@ namespace TenSecondHero.Activities.GamePlay
         public SaveActivity01(Game game) : base(game, "Content/maps/save01.tmx")
         {
         }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            if( _entities.OfType<TenSecondHero.Entities.Object>().Count() <= 0 )
+            {
+                Exit(true);
+            }
+        }
     }
 }
