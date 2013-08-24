@@ -16,7 +16,10 @@ namespace TenSecondHero.Activities
         private Map _levelMap;
 
 
-        public TemplateActivity(Game game) : base(game) { }
+        public TemplateActivity(Game game, string map) : base(game) 
+        {
+            _levelMap = MapLoader.LoadMap(map); 
+        }
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -40,6 +43,7 @@ namespace TenSecondHero.Activities
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            _levelMap.Draw(gameTime, SpriteBatch, Vector2.Zero);
         }
     }
 }

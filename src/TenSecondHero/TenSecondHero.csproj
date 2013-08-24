@@ -40,6 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Activities\Base\TemplateActivity.cs" />
+    <Compile Include="Activities\TransformActivity.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="MainGame.Core.cs">

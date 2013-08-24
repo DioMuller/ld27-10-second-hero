@@ -40,6 +40,9 @@ namespace TenSecondHero
             // TODO: Add your initialization logic here
             Run(Activity<bool>.Create(this, Play));
 
+            graphics.PreferredBackBufferWidth = 640;
+            graphics.PreferredBackBufferHeight = 480;
+
             base.Initialize();
         }
 
@@ -74,7 +77,7 @@ namespace TenSecondHero
         async Task<bool> Play()
         {
             //*
-            await Run(new TemplateActivity(this));
+            await Run(new TransformActivity(this));
             /*/
             // TODO: Run logo/intro, start screen, gameplay/settings.
             await Run(new IntroActivity(this));
