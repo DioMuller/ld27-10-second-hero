@@ -7,12 +7,12 @@ using System.Collections.Generic;
 using TenSecondHero.Entities;
 using System.Linq;
 
-namespace TenSecondHero.Activities
+namespace TenSecondHero.Activities.GamePlay
 {
     /// <summary>
     /// Default MonoGame project logic, shows how an activity can be created.
     /// </summary>
-    class GamePlayActivity : Activity<bool>
+    class GamePlayActivity : Activity<LevelResult>
     {
         /// <summary>
         /// Level map.
@@ -52,7 +52,7 @@ namespace TenSecondHero.Activities
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit(true);
+                Exit(LevelResult.RestartGame);
 
             while( _toRemoveEntity.Count != 0 )
             {
@@ -110,6 +110,11 @@ namespace TenSecondHero.Activities
             }
 
             SpriteBatch.End();
+        }
+
+        public virtual void OnTimeout()
+        {
+            Exit(LevelResult.Failed);
         }
     }
 }

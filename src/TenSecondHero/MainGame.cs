@@ -12,6 +12,7 @@ using TenSecondHero.Core;
 using TenSecondHero.Activities;
 using MonoGameLib.Core;
 using TenSecondHero.Activities.GamePlay;
+using System.Threading;
 #endregion
 
 namespace TenSecondHero
@@ -129,12 +130,12 @@ namespace TenSecondHero
                         break;
                     }
 
-                    var succeded = await Run(level);
+                    var result = await RunLevel(level);
 
-                    /*if (result.RestartGame)
-                        break;*/
+                    if (result == LevelResult.RestartGame)
+                        break;
 
-                    if (succeded)
+                    if (result == LevelResult.Succeded)
                         currentLevelNumber++;
                     else
                         extraLives--;
@@ -151,6 +152,22 @@ namespace TenSecondHero
 
             Exit();
             return true;
+        }
+
+        private async Task<LevelResult> RunLevel(GamePlayActivity level)
+        {
+            var cancelAutoFail = new CancellationTokenSource();
+            var timeOut = Task.Delay(TimeSpan.FromSeconds(10), cancelAutoFail.Token);
+            var runLevel = Run(level);
+
+            using (currentActivity.Activate())
+            {
+                if (await Task.WhenAny(runLevel, timeOut) == timeOut)
+                    level.OnTimeout();
+            }
+
+            cancelAutoFail.Cancel();
+            return await runLevel;
         }
     }
 }

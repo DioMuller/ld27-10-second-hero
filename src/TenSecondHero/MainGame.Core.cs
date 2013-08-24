@@ -94,7 +94,7 @@ namespace TenSecondHero
                     }
 
                     return t.Result;
-                });
+                }, TaskScheduler.FromCurrentSynchronizationContext());
             }
         }
     }
