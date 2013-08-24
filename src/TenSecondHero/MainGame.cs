@@ -107,48 +107,33 @@ namespace TenSecondHero
             {
                 await Run(new TitleActivity(this));
 
-                var extraLives = 3;
+                var gameTimeoutTask = Task.Delay(TimeSpan.FromSeconds(10));
 
                 int currentLevelNumber = startLevel;
 
                 var level = LoadLevel(currentLevelNumber);
 
-                while (extraLives >= 0)
+                while (level != null)
                 {
-                    if (level == null) // If there are no more levels to run
-                    {
-                        //await Run(new ShowEndingActivity(this, extraLives));
-                        break;
-                    }
-
-                    var result = await RunLevel(level);
-
-                    if (result == LevelResult.RestartGame)
-                        break;
+                    var result = await RunLevel(level, gameTimeoutTask);
 
                     if (result == LevelResult.Succeded)
                         currentLevelNumber++;
-                    else
-                        extraLives--;
+                    else break;
 
                     level = LoadLevel(currentLevelNumber);
-
-                    //if (extraLives >= 0 && level != null)
-                    //    await Run(new ShowResultsActivity(this, extraLives, result));
                 }
 
-                /*if (extraLives < 0)
-                    await Run(new GameOverActivity(this));*/
+                //if (!gameTimeoutTask.IsCompleted)
+                //    await Run(new EndingActivity(this));
             }
 
             Exit();
             return true;
         }
 
-        private async Task<LevelResult> RunLevel(GamePlayActivity level)
+        private async Task<LevelResult> RunLevel(GamePlayActivity level, Task timeOut)
         {
-            var cancelAutoFail = new CancellationTokenSource();
-            var timeOut = Task.Delay(TimeSpan.FromSeconds(10), cancelAutoFail.Token);
             var runLevel = Run(level);
 
             using (currentActivity.Activate())
@@ -157,7 +142,6 @@ namespace TenSecondHero
                     level.OnTimeout();
             }
 
-            cancelAutoFail.Cancel();
             return await runLevel;
         }
     }
