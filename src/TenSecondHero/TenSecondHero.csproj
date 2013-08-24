@@ -50,6 +50,7 @@
     <Compile Include="Activities\GamePlay\SaveActivity01.cs" />
     <Compile Include="Activities\TitleActivity.cs" />
     <Compile Include="Behaviors\ControllableBehavior.cs" />
+    <Compile Include="Behaviors\MoveStraightBehavior.cs" />
     <Compile Include="Behaviors\PickableBehavior.cs" />
     <Compile Include="Behaviors\WalkLeftRightBehavior.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
@@ -159,10 +160,16 @@
     <Content Include="Content\sprites\human.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\sprites\railroad.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\sprites\strongman01.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\sprites\thief01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\train.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\tiles\tileset.png">
@@ -240,7 +247,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\maps\grandma_friend.tmx">
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\maps\train_accident.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

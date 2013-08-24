@@ -24,14 +24,21 @@ namespace TenSecondHero.Entities
             Sprite.ChangeAnimation("active");
         }
 
-        public async Task Explode()
+        public Task Explode()
         {
-            var explosion = new Explosion();
-            explosion.Position = new Vector2(Position.X - (explosion.Size.X - Size.X) / 2, Position.Y - (explosion.Size.Y - Size.Y));
+            return Explode(_level, this);
+        }
 
-            _level.AddEntity(explosion);
-            _level.RemoveEntity(this);
-            await Task.Delay(1000);
+        public async static Task Explode(GamePlayActivity level, BaseEntity obj, bool removeEntity = true, uint duration = 1000)
+        {
+            var explosion = new Explosion { CollidesWithMap = false };
+            explosion.Position = new Vector2(obj.Position.X - (explosion.Size.X - obj.Size.X) / 2, obj.Position.Y - (explosion.Size.Y - obj.Size.Y));
+
+            level.AddEntity(explosion);
+            if(removeEntity)
+                level.RemoveEntity(obj);
+            await Task.Delay((int)duration);
+            level.RemoveEntity(explosion);
         }
     }
 }
