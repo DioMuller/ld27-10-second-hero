@@ -12,7 +12,7 @@ namespace TenSecondHero.Activities
     /// <summary>
     /// Default MonoGame project logic, shows how an activity can be created.
     /// </summary>
-    class TemplateActivity : Activity<bool>
+    class GamePlayActivity : Activity<bool>
     {
         /// <summary>
         /// Level map.
@@ -21,7 +21,7 @@ namespace TenSecondHero.Activities
         protected List<BaseEntity> _entities;
 
 
-        public TemplateActivity(Game game, string map) : base(game) 
+        public GamePlayActivity(Game game, string map) : base(game) 
         {
             _levelMap = MapLoader.LoadMap(map);
             _entities = new List<BaseEntity>();
