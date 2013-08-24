@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using TenSecondHero.Entities;
 using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
+using TenSecondHero.Activities.Base;
 
 namespace TenSecondHero.Activities.GamePlay
 {
@@ -39,7 +40,10 @@ namespace TenSecondHero.Activities.GamePlay
                 }
                 else if( obj.Category == "Item" )
                 {
-                    _entities.Add(new Object( obj.Name, obj.Size ) { Position = obj.Position } );
+                    if (obj.Name == "Bomb")
+                        _entities.Add(new Bomb() { Position = obj.Position });
+                    else
+                        _entities.Add(new Object( obj.Name, obj.Size ) { Position = obj.Position } );
                 }
                 else if( obj.Category == "Entrance" )
                 {
