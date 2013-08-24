@@ -43,6 +43,7 @@
     <Compile Include="Activities\GamePlay\BombExplodeActivity.cs" />
     <Compile Include="Activities\GamePlay\CatActivity.cs" />
     <Compile Include="Activities\GamePlay\ArrestThiefActivity.cs" />
+    <Compile Include="Activities\GamePlay\TrainAccidentActivity.cs" />
     <Compile Include="Activities\GamePlay\GrandmaCrossingActivity.cs" />
     <Compile Include="Activities\GamePlay\GrandmaFriendActivity.cs" />
     <Compile Include="Activities\GamePlay\SaveActivity02.cs" />
@@ -173,6 +174,12 @@
     <Content Include="Content\tiles\tileset_squareelements02.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\tiles\tiles_floor.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tiles\tile_railroad.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icon.ico" />
     <Content Include="lib\x64\OpenAL32.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -233,6 +240,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\maps\grandma_friend.tmx">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\maps\train_accident.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
