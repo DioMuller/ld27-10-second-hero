@@ -36,9 +36,10 @@
 </data>
  </layer>
  <objectgroup name="Objects" width="40" height="30">
-  <object name="Player" type="Player" x="289" y="252" width="16" height="48"/>
+  <object name="Player" type="Player" x="41" y="47" width="16" height="48"/>
   <object name="BoyCitizen02" type="Item" x="480" y="352" width="16" height="48"/>
   <object name="GirlCitizen01" type="Item" x="338" y="352" width="16" height="48"/>
   <object name="BoyCitizen01" type="Item" x="270" y="352" width="16" height="48"/>
+  <object name="Bomb" type="Item" x="418" y="380" width="16" height="16"/>
  </objectgroup>
 </map>

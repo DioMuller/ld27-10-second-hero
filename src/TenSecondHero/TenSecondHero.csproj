@@ -87,10 +87,16 @@
     <Content Include="Content\sprites\10sechero.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\sprites\bomb.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\sprites\boycitizen01.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\sprites\boycitizen02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\explosion.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\sprites\girlcitizen01.png">
@@ -147,8 +153,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\tilesets\tileset_bricks.tsx">
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	</Content>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\maps\bomb_explode.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
