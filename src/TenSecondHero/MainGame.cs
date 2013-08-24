@@ -40,6 +40,7 @@ namespace TenSecondHero
             GameContent.Initialize(this.Content);
 
             Window.Title = "LD27 - Ten Seconds Hero!";
+            SoundManager.BGMFolder = "bgm";
         }
 
         /// <summary>
@@ -110,8 +111,10 @@ namespace TenSecondHero
             //await Run(new IntroActivity(this));
             while (true)
             {
+                SoundManager.PlayBGM("credits");
                 await Run(new TitleActivity(this));
 
+                SoundManager.PlayBGM(rnd.Next()%2 == 0? "no name" : "save me");
                 var levelOrder = Enumerable.Range(0, levelCount).OrderBy(n => rnd.Next());
 
                 var timeOutTask = StartTimeout();
