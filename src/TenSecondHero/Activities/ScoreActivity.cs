@@ -17,6 +17,7 @@ namespace TenSecondHero.Activities
         /// </summary>
         public SpriteFont _font;
         public SpriteFont _smallFont;
+        private bool? _lastEscState;
 
         public ScoreActivity(MainGame game)
             : base(game)
@@ -32,8 +33,10 @@ namespace TenSecondHero.Activities
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Space))
+            var escPressed = GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape);
+            if (escPressed && _lastEscState == false)
                 Exit(true);
+            _lastEscState = escPressed;
         }
 
         /// <summary>
@@ -43,7 +46,7 @@ namespace TenSecondHero.Activities
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
             string[] texts = new string[] { "You Scored", Game.Score + " points", "In " + Game.Levels + " levels"};
-            string msg = "Press [SPACE] to return to the Title Screen" ;
+            string msg = "Press [ESC] to return to the Title Screen" ;
             int height = 50;
 
             GraphicsDevice.Clear(Color.TransparentBlack);

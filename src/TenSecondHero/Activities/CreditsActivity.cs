@@ -17,6 +17,7 @@ namespace TenSecondHero.Activities
         /// </summary>
         private SpriteFont _font;
         private SpriteFont _smallFont;
+        private bool? _lastEscState;
 
         private string[] _texts = new string[] { "Diogo Muller (Programming)", "João Vitor (Programming)", "Melanie Young (Art)", "Moisés 'Musashi' Santana (Music)" };
         private int _rnd;
@@ -36,8 +37,10 @@ namespace TenSecondHero.Activities
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Space))
+            var escPressed = GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape);
+            if (escPressed && _lastEscState == false)
                 Exit(true);
+            _lastEscState = escPressed;
         }
 
         /// <summary>
@@ -46,8 +49,7 @@ namespace TenSecondHero.Activities
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            
-            string msg = "Press [SPACE] to return to the Title Screen" ;
+            string msg = "Press [ESC] to return to the Title Screen" ;
             int height = 50;
 
             GraphicsDevice.Clear(Color.TransparentBlack);

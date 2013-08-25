@@ -27,6 +27,7 @@ namespace TenSecondHero.Activities.GamePlay
         protected Texture2D _background;
         protected SpriteFont _font;
         protected SpriteFont _bigfont;
+        private bool? _lastEscState;
 
         public string Description { get; set; }
 
@@ -76,8 +77,10 @@ namespace TenSecondHero.Activities.GamePlay
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            var escPressed = GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape);
+            if (escPressed && _lastEscState == false)
                 Exit(false);
+            _lastEscState = escPressed;
 
             while (_toAddEntity.Count != 0)
             {
