@@ -46,10 +46,13 @@ namespace TenSecondHero.Activities.GamePlay
         {
             base.Update(gameTime);
 
+            if (_trainAccidentEvents.Task.IsCompleted)
+                return;
+
             if (Train.BoundingBox.Intersects(Checkpoint.BoundingBox))
                 _trainAccidentEvents.TrySetResult(true);
 
-            if (_entities.OfType<Entities.Object>().Count(e => e.Name.Contains("RailRoad")) <= 0)
+            else if (_entities.OfType<Entities.Object>().Count(e => e.Name.Contains("RailRoad")) <= 0)
                 Exit(true);
         }
     }
