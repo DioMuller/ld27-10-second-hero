@@ -20,7 +20,7 @@ namespace TenSecondHero.Activities.GamePlay
 
         private bool CanWalk(BaseEntity entity)
         {
-            if (entity is Enemy || (entity is NPC && ((NPC)entity).Name != "Cat"))
+            if (entity is Enemy || (entity is Object && ((Object)entity).Name != "Cat"))
                 return true;
 
             return false;

@@ -18,7 +18,7 @@ namespace TenSecondHero.Activities.GamePlay
         public BombExplodeActivity(MainGame game)
             : base(game, "Content/maps/bomb_explode.tmx", "images/background_morningsky.png")
         {
-            foreach (var ent in _entities.OfType<NPC>())
+            foreach (var ent in _entities.OfType<Entities.Object>().Where(o => o.Name.Contains("Citizen")))
             {
                 ent.Behaviors.Add(new WalkLeftRightBehavior(_levelMap, ent));
             }
