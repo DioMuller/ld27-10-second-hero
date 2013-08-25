@@ -16,8 +16,8 @@ namespace TenSecondHero.Activities
         /// Level map.
         /// </summary>
         private Texture2D _titleTexture;
-
         private SpriteFont _font;
+        private bool? _lastEscState;
 
         public TitleActivity(MainGame game) : base(game)
         {
@@ -47,10 +47,13 @@ namespace TenSecondHero.Activities
                 Exit(true);
             }
 
-            if( Keyboard.GetState().IsKeyDown(Keys.Escape) )
+            var escPressed = Keyboard.GetState().IsKeyDown(Keys.Escape);
+            if (escPressed && _lastEscState == false)
             {
                 Game.Exit();
             }
+
+            _lastEscState = escPressed;
         }
 
         /// <summary>
