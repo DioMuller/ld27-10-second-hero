@@ -115,6 +115,6 @@
   <object name="BoyCitizen02" type="Item" x="537" y="407" width="16" height="48"/>
   <object name="GirlCitizen01" type="Item" x="548" y="419" width="16" height="48"/>
   <object name="GirlCitizen02" type="Item" x="236" y="410" width="16" height="48"/>
-  <object name="Thief01" type="Item" x="317" y="381" width="16" height="48"/>
+  <object name="Thief01" type="Item" x="317" y="381" width="32" height="48"/>
  </objectgroup>
 </map>
