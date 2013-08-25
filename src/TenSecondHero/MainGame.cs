@@ -34,9 +34,6 @@ namespace TenSecondHero
         public int Score { get; set; }
         public int Levels { get; set; }
 
-        public bool ShowCredits { get; set; }
-        public bool ShowHowToPlay { get; set; }
-
         public MainGame()
             : base()
         {
@@ -116,52 +113,71 @@ namespace TenSecondHero
             int levelCount = 8;
             var rnd = new Random(Environment.TickCount);
 
-            // TODO: Run logo/intro, start screen, gameplay/settings.
-            //await Run(new IntroActivity(this));
-            while (true)
+            bool exit = false;
+            while (!exit)
             {
-                SoundManager.PlayBGM("Press Start");
-                Score = 0;
-                Levels = 0;
-                ShowCredits = false;
-                ShowHowToPlay = false;
-                await Run(new TitleActivity(this));
-
-                if( ShowCredits )
+                switch (await ShowTitle())
                 {
-                    SoundManager.PlayBGM("Credits");
-                    await Run(new CreditsActivity(this));
-                }
-                else if( ShowHowToPlay )
-                {
-                    SoundManager.PlayBGM("Credits");
-                    await Run(new HowToPlayActivity(this));
-                }
-                else
-                {
-                    SoundManager.PlayBGM(rnd.Next()%2 == 0? "We Don't Need a Hero" : "Save Me");
-                    var levelOrder = Enumerable.Range(0, levelCount).OrderBy(n => rnd.Next());
-
-                    var timeOutTask = StartTimeout();
-                    foreach (var levelNumber in levelOrder)
-                    {
-                        var level = LoadLevel(levelNumber);
-                        var succeded = await RunLevel(level, timeOutTask);
-
-                        if (!succeded)
-                            break;
-                        else
-                            Levels++;
-                    }
-
-                    SoundManager.PlayBGM("Score Time");
-                    await Run(new ScoreActivity(this));
+                    case TitleResult.Credits:
+                        await ShowCredits();
+                        break;
+                    case TitleResult.HowToPlay:
+                        await ShowHowToPlay();
+                        break;
+                    case TitleResult.Play:
+                        await GamePlay(levelCount, rnd);
+                        break;
                 }
             }
 
             Exit();
             return true;
         }
+
+        #region Screens
+        private async Task<TitleResult> ShowTitle()
+        {
+            SoundManager.PlayBGM("Press Start");
+            var res = await Run(new TitleActivity(this));
+            return res;
+        }
+
+        private async Task ShowHowToPlay()
+        {
+            SoundManager.PlayBGM("Credits");
+            await Run(new HowToPlayActivity(this));
+        }
+
+        private async Task ShowCredits()
+        {
+            SoundManager.PlayBGM("Credits");
+            await Run(new CreditsActivity(this));
+        }
+
+        private async Task GamePlay(int levelCount, Random rnd)
+        {
+            SoundManager.PlayBGM(rnd.Next() % 2 == 0 ? "We Don't Need a Hero" : "Save Me");
+            var levelOrder = Enumerable.Range(0, levelCount).OrderBy(n => rnd.Next());
+
+            Score = 0;
+            Levels = 0;
+
+            var timeOutTask = StartTimeout();
+            foreach (var levelNumber in levelOrder)
+            {
+                var level = LoadLevel(levelNumber);
+                var succeded = await RunLevel(level, timeOutTask);
+
+                if (!succeded)
+                    break;
+                else
+                    Levels++;
+            }
+
+            SoundManager.PlayBGM("Score Time");
+            await Run(new ScoreActivity(this));
+        }
+        #endregion
 
         private Task StartTimeout()
         {

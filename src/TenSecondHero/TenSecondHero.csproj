@@ -51,6 +51,7 @@
     <Compile Include="Activities\GamePlay\SaveActivity02.cs" />
     <Compile Include="Activities\GamePlay\SaveActivity01.cs" />
     <Compile Include="Activities\TitleActivity.cs" />
+    <Compile Include="Activities\TitleResult.cs" />
     <Compile Include="Behaviors\ControllableBehavior.cs" />
     <Compile Include="Behaviors\MoveStraightBehavior.cs" />
     <Compile Include="Behaviors\PickableBehavior.cs" />

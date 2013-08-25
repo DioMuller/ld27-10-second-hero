@@ -10,7 +10,7 @@ using TenSecondHero.Core;
 
 namespace TenSecondHero.Activities
 {
-    class TitleActivity  : Activity<bool>
+    class TitleActivity : Activity<TitleResult>
     {
         /// <summary>
         /// Level map.
@@ -33,18 +33,16 @@ namespace TenSecondHero.Activities
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Enter))
-                Exit(true);
+                Exit(TitleResult.Play);
 
             if (Keyboard.GetState().IsKeyDown(Keys.F1))
             {
-                Game.ShowHowToPlay = true;
-                Exit(true);
+                Exit(TitleResult.HowToPlay);
             }
 
             if( Keyboard.GetState().IsKeyDown(Keys.F2) )
             {
-                Game.ShowCredits = true;
-                Exit(true);
+                Exit(TitleResult.Credits);
             }
 
             var escPressed = Keyboard.GetState().IsKeyDown(Keys.Escape);
