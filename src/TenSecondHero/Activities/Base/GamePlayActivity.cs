@@ -24,6 +24,7 @@ namespace TenSecondHero.Activities.GamePlay
         protected Stack<BaseEntity> _toRemoveEntity, _toAddEntity;
         protected Texture2D _background;
         protected SpriteFont _font;
+        protected SpriteFont _bigfont;
 
         public string Description { get; set; }
 
@@ -36,6 +37,7 @@ namespace TenSecondHero.Activities.GamePlay
             _toAddEntity = new Stack<BaseEntity>();
             _background = game.Content.Load<Texture2D>(background);
             _font = game.Content.Load<SpriteFont>("fonts/DefaultFont");
+            _bigfont = game.Content.Load<SpriteFont>("fonts/BigFont");
 
             foreach (GameObject obj in _levelMap.Objects)
             {
@@ -140,7 +142,7 @@ namespace TenSecondHero.Activities.GamePlay
             Vector2 textSize = _font.MeasureString(Description);
             Vector2 position = new Vector2( 10, Game.Window.ClientBounds.Height - textSize.Y - 10);
             SpriteBatch.DrawString(_font, Description, position, Color.White);
-            SpriteBatch.DrawString(_font, Game.RemainingTime.Seconds.ToString(), Vector2.One * 5, Color.Red); 
+            SpriteBatch.DrawString(_bigfont, Game.RemainingTime.Seconds.ToString(), Vector2.One * 5, Color.Red); 
 
             SpriteBatch.End();
         }
