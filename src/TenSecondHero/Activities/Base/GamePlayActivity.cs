@@ -144,7 +144,7 @@ namespace TenSecondHero.Activities.GamePlay
             SpriteBatch.Draw(_background, Vector2.Zero, Color.White);
             _levelMap.Draw(gameTime, SpriteBatch, Vector2.Zero);
 
-            foreach (var ent in _entities)
+            foreach (var ent in _entities.OrderBy(e => e.Position.Y + e.Size.Y))
             {
                 ent.Draw(gameTime, SpriteBatch);
             }
