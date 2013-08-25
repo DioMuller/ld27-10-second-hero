@@ -48,7 +48,7 @@ namespace TenSecondHero.Activities
             var escPressed = Keyboard.GetState().IsKeyDown(Keys.Escape);
             if (escPressed && _lastEscState == false)
             {
-                Game.Exit();
+                Exit(TitleResult.Exit);
             }
 
             _lastEscState = escPressed;

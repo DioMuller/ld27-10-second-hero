@@ -11,5 +11,6 @@ namespace TenSecondHero.Activities
         Play,
         HowToPlay,
         Credits,
+        Exit
     }
 }

@@ -24,8 +24,10 @@ namespace TenSecondHero
     /// </summary>
     public partial class MainGame : Game
     {
+        const int LevelCount = 8;
+        static readonly Random Random = new Random(Environment.TickCount);
+
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
         TaskCompletionSource<bool> timeOutCompletionTask;
 
         public TimeSpan GameTimeOut { get; set; }
@@ -55,39 +57,101 @@ namespace TenSecondHero
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-            Run(Activity<bool>.Create(this, Play));
-
             graphics.PreferredBackBufferWidth = 640;
             graphics.PreferredBackBufferHeight = 480;
+
+            Run(Activity<bool>.Create(this, Play));
 
             base.Initialize();
         }
 
-        #region Content
         /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
+        /// Controls the game activities sequence, from intro to ending,
+        /// including gameplay and settings activity.
         /// </summary>
-        protected override void LoadContent()
+        /// <returns>true</returns>
+        async Task<bool> Play()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            bool exit = false;
+            while (!exit)
+            {
+                switch (await ShowTitle())
+                {
+                    case TitleResult.Credits:
+                        await ShowCredits();
+                        break;
+                    case TitleResult.HowToPlay:
+                        await ShowHowToPlay();
+                        break;
+                    case TitleResult.Play:
+                        await RunGamePlay();
+                        break;
+                    case TitleResult.Exit:
+                        exit = true;
+                        break;
+                }
+            }
 
-            // TODO: use this.Content to load your game content here
+            Exit();
+            return true;
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
-        protected override void UnloadContent()
+        #region Screens
+        private async Task<TitleResult> ShowTitle()
         {
-            // TODO: Unload any non ContentManager content here
+            SoundManager.PlayBGM("Press Start");
+            return await Run(new TitleActivity(this));
+        }
+
+        private async Task ShowHowToPlay()
+        {
+            SoundManager.PlayBGM("Credits");
+            await Run(new HowToPlayActivity(this));
+        }
+
+        private async Task ShowCredits()
+        {
+            SoundManager.PlayBGM("Credits");
+            await Run(new CreditsActivity(this));
+        }
+
+        private async Task RunGamePlay()
+        {
+            SoundManager.PlayBGM(Random.Next() % 2 == 0 ? "We Don't Need a Hero" : "Save Me");
+            var levelOrder = Enumerable.Range(0, LevelCount).OrderBy(n => Random.Next());
+
+            Score = 0;
+            Levels = 0;
+
+            var timeOutTask = StartTimeout();
+            foreach (var levelNumber in levelOrder)
+            {
+                var succeded = await RunLevel(levelNumber, timeOutTask);
+                if (!succeded)
+                    break;
+
+                Levels++;
+            }
+
+            await ShowScore();
+        }
+
+        private async Task ShowScore()
+        {
+            SoundManager.PlayBGM("Score Time");
+            await Run(new ScoreActivity(this));
         }
         #endregion
 
-        GamePlayActivity LoadLevel(int levelNumber)
+        #region Helpers
+        private Task StartTimeout()
+        {
+            GameTimeOut = GameTime.TotalGameTime + TimeSpan.FromSeconds(10);
+            timeOutCompletionTask = new TaskCompletionSource<bool>();
+            return timeOutCompletionTask.Task;
+        }
+
+        private GamePlayActivity LoadLevel(int levelNumber)
         {
             switch (levelNumber)
             {
@@ -103,91 +167,9 @@ namespace TenSecondHero
             return null;
         }
 
-        /// <summary>
-        /// Controls the game activities sequence, from intro to ending,
-        /// including gameplay and settings activity.
-        /// </summary>
-        /// <returns>true</returns>
-        async Task<bool> Play()
+        private async Task<bool> RunLevel(int levelNumber, Task timeOut)
         {
-            int levelCount = 8;
-            var rnd = new Random(Environment.TickCount);
-
-            bool exit = false;
-            while (!exit)
-            {
-                switch (await ShowTitle())
-                {
-                    case TitleResult.Credits:
-                        await ShowCredits();
-                        break;
-                    case TitleResult.HowToPlay:
-                        await ShowHowToPlay();
-                        break;
-                    case TitleResult.Play:
-                        await GamePlay(levelCount, rnd);
-                        break;
-                }
-            }
-
-            Exit();
-            return true;
-        }
-
-        #region Screens
-        private async Task<TitleResult> ShowTitle()
-        {
-            SoundManager.PlayBGM("Press Start");
-            var res = await Run(new TitleActivity(this));
-            return res;
-        }
-
-        private async Task ShowHowToPlay()
-        {
-            SoundManager.PlayBGM("Credits");
-            await Run(new HowToPlayActivity(this));
-        }
-
-        private async Task ShowCredits()
-        {
-            SoundManager.PlayBGM("Credits");
-            await Run(new CreditsActivity(this));
-        }
-
-        private async Task GamePlay(int levelCount, Random rnd)
-        {
-            SoundManager.PlayBGM(rnd.Next() % 2 == 0 ? "We Don't Need a Hero" : "Save Me");
-            var levelOrder = Enumerable.Range(0, levelCount).OrderBy(n => rnd.Next());
-
-            Score = 0;
-            Levels = 0;
-
-            var timeOutTask = StartTimeout();
-            foreach (var levelNumber in levelOrder)
-            {
-                var level = LoadLevel(levelNumber);
-                var succeded = await RunLevel(level, timeOutTask);
-
-                if (!succeded)
-                    break;
-                else
-                    Levels++;
-            }
-
-            SoundManager.PlayBGM("Score Time");
-            await Run(new ScoreActivity(this));
-        }
-        #endregion
-
-        private Task StartTimeout()
-        {
-            GameTimeOut = GameTime.TotalGameTime + TimeSpan.FromSeconds(10);
-            timeOutCompletionTask = new TaskCompletionSource<bool>();
-            return timeOutCompletionTask.Task;
-        }
-
-        private async Task<bool> RunLevel(GamePlayActivity level, Task timeOut)
-        {
+            var level = LoadLevel(levelNumber);
             var runLevel = Run(level);
 
             using (currentActivity.Activate())
@@ -198,5 +180,6 @@ namespace TenSecondHero
 
             return await runLevel;
         }
+        #endregion
     }
 }
