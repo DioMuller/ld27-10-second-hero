@@ -42,10 +42,10 @@ namespace TenSecondHero.Activities.GamePlay
             base.OnTimeout();
         }
 
-        //public override int GetScoreFor(BaseEntity entity)
-        //{
-        //    if( entity is Bomb ) return 3;
-        //    else return -1;
-        //}
+        public override int GetScoreFor(BaseEntity entity)
+        {
+            if( entity is Bomb ) return 3;
+            else return -1;
+        }
     }
 }

@@ -34,16 +34,16 @@ namespace TenSecondHero.Activities.GamePlay
                 Exit(true);
         }
 
-        //public override int GetScoreFor(BaseEntity entity)
-        //{
-        //    Object obj = entity as Object;
-        //    if (obj != null)
-        //    {
-        //        if (obj.Name == "Thief01") return 3;
-        //        else return -1;
-        //    }
-
-        //    return 0;
-        //}
+        public override int GetScoreFor(BaseEntity entity)
+        {
+            Object obj = entity as Object;
+            if (obj != null)
+            {
+                if (obj.Name == "Thief01") return 3;
+                else return -1;
+            }
+            
+            return 0;
+        }
     }
 }
