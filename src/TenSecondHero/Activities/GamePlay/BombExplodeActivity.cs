@@ -18,7 +18,7 @@ namespace TenSecondHero.Activities.GamePlay
         public BombExplodeActivity(MainGame game)
             : base(game, "Content/maps/bomb_explode.tmx", "images/background_morningsky.png")
         {
-            foreach (var ent in _entities.OfType<Entities.Object>().Where(o => o.Name.Contains("Citizen")))
+            foreach (var ent in _entities.OfType<Entities.NPC>().Where(o => o.Name.Contains("Citizen")))
             {
                 ent.Behaviors.Add(new WalkLeftRightBehavior(_levelMap, ent));
             }
@@ -42,10 +42,10 @@ namespace TenSecondHero.Activities.GamePlay
             base.OnTimeout();
         }
 
-        public override int GetScoreFor(BaseEntity entity)
-        {
-            if( entity is Bomb ) return 3;
-            else return -1;
-        }
+        //public override int GetScoreFor(BaseEntity entity)
+        //{
+        //    if( entity is Bomb ) return 3;
+        //    else return -1;
+        //}
     }
 }

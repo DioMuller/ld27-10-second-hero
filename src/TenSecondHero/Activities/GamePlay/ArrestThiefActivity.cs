@@ -20,7 +20,7 @@ namespace TenSecondHero.Activities.GamePlay
 
         private bool CanWalk(BaseEntity entity)
         {
-            if (entity is Enemy || (entity is Object && ((Object)entity).Name != "Cat"))
+            if (entity is Enemy || (entity is Object && ((Object)entity).Name != "Cat") || entity is NPC)
                 return true;
 
             return false;
@@ -34,16 +34,16 @@ namespace TenSecondHero.Activities.GamePlay
                 Exit(true);
         }
 
-        public override int GetScoreFor(BaseEntity entity)
-        {
-            Object obj = entity as Object;
-            if (obj != null)
-            {
-                if (obj.Name == "Thief01") return 3;
-                else return -1;
-            }
+        //public override int GetScoreFor(BaseEntity entity)
+        //{
+        //    Object obj = entity as Object;
+        //    if (obj != null)
+        //    {
+        //        if (obj.Name == "Thief01") return 3;
+        //        else return -1;
+        //    }
             
-            return 0;
-        }
+        //    return 0;
+        //}
     }
 }
