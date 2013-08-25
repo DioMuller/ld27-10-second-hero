@@ -18,6 +18,8 @@ namespace TenSecondHero.Entities
         {
             Sprite.Animations.Add(new Animation("exploding", 0, 0, 1));
             Sprite.ChangeAnimation("exploding");
+            var bh = Behaviors.OfType<PickableBehavior>().FirstOrDefault();
+            Behaviors.Remove(bh);
         }
     }
 }

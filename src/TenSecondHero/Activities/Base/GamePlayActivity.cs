@@ -9,6 +9,7 @@ using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLib.Core;
 using System;
+using TenSecondHero.Behaviors;
 
 namespace TenSecondHero.Activities.GamePlay
 {
@@ -101,6 +102,9 @@ namespace TenSecondHero.Activities.GamePlay
                 {
                     foreach (var obj in _entities.OfType<TenSecondHero.Entities.Object>())
                     {
+                        if (obj.GetBehavior<PickableBehavior>() == null)
+                            continue;
+
                         if (obj.BoundingBox.Intersects(ent.BoundingBox))
                         {
                             if (obj.Parent == null)
