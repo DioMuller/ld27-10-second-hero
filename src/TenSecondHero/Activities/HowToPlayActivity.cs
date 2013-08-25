@@ -19,7 +19,16 @@ namespace TenSecondHero.Activities
         private SpriteFont _smallFont;
         private bool? _lastEscState;
 
-        private string[] _texts = new string[] { "Use the WASD keys move your hero.", "You have 10 seconds to do hero things!", "The objective is on the lower part of the screen", "Fly above a target to pick it.", "Drop the correct target on the green area", "Get points for doing the correct objective", "Lose points for droping the wrong target." };
+        private string[] _texts = new string[]
+        {
+            "You have 10 seconds to do hero things!",
+            "",
+            "Use the WASD keys move your hero.",
+            "Fly above a target to pick it up,",
+            "drop the correct target on the green area.",
+            "Get points for completing the correct objective,",
+            "lose points for droping the wrong target."
+        };
         private int _rnd;
 
         public HowToPlayActivity(MainGame game)
