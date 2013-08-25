@@ -163,7 +163,7 @@ namespace TenSecondHero.Activities.GamePlay
             Vector2 textSize = _font.MeasureString(Description);
             Vector2 position = new Vector2( 10, Game.Window.ClientBounds.Height - textSize.Y - 10);
             SpriteBatch.DrawString(_font, Description, position, Color.White);
-            SpriteBatch.DrawString(_bigfont, Game.RemainingTime.Seconds.ToString(), Vector2.One * 5, Color.Red); 
+            SpriteBatch.DrawString(_bigfont, Math.Ceiling(Game.RemainingTime.TotalSeconds).ToString(), Vector2.One * 5, Color.Red); 
             
             string score = "Score:" + Game.Score.ToString();
             position = new Vector2( Game.Window.ClientBounds.Width - 10 - _bigfont.MeasureString(score).X, 10);
