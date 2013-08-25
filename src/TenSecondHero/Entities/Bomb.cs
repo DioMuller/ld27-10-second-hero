@@ -12,7 +12,7 @@ using TenSecondHero.Activities.GamePlay;
 
 namespace TenSecondHero.Entities
 {
-    class Bomb : Object
+    class Bomb : Enemy
     {
         GamePlayActivity _level;
 

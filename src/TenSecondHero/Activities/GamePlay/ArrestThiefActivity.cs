@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MonoGameLib.Core.Entities;
 using System.Linq;
 using TenSecondHero.Behaviors;
 using TenSecondHero.Entities;
@@ -13,24 +14,32 @@ namespace TenSecondHero.Activities.GamePlay
             foreach (var ent in _entities)
                 ent.CollidesWithMap = false;
 
-            foreach (var ent in _entities.OfType<Entities.Object>())
+            foreach (var ent in _entities.OfType<BaseEntity>().Where(CanWalk))
                 ent.Behaviors.Add(new WalkLeftRightBehavior(_levelMap, ent));
+        }
+
+        private bool CanWalk(BaseEntity entity)
+        {
+            if (entity is Enemy || (entity is NPC && ((NPC)entity).Name != "Cat"))
+                return true;
+
+            return false;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            if (_entities.OfType<Entities.Object>().Count(e => e.Name.Contains("Thief")) <= 0)
+            if (!_entities.OfType<Enemy>().Any())
                 Exit(true);
         }
 
         public override int GetScoreFor(BaseEntity entity)
         {
             Object obj = entity as Object;
-            if( obj != null )
+            if (obj != null)
             {
-                if( obj.Name == "Thief01" ) return 3;
+                if (obj.Name == "Thief01") return 3;
                 else return -1;
             }
 

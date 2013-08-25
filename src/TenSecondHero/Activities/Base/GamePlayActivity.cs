@@ -62,6 +62,10 @@ namespace TenSecondHero.Activities.GamePlay
                     {
                         _entities.Add(new Bomb(this) { Position = obj.Position });
                     }
+                    else
+                    {
+                        _entities.Add(new TenSecondHero.Entities.Enemy(obj.Name, obj.Size) { Position = obj.Position });
+                    }
                 }
                 else if (obj.Category == "Checkpoint")
                 {
@@ -103,7 +107,7 @@ namespace TenSecondHero.Activities.GamePlay
 
                 if (ent is Player)
                 {
-                    foreach (var obj in _entities.OfType<TenSecondHero.Entities.Object>())
+                    foreach (var obj in _entities.OfType<BaseEntity>())
                     {
                         if (obj.GetBehavior<PickableBehavior>() == null)
                             continue;
