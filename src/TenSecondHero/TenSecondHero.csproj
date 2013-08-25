@@ -194,6 +194,9 @@
     <Content Include="Content\tiles\tileset_buildings.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\tiles\tileset_buildings02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\tiles\tileset_city.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
