@@ -117,6 +117,9 @@
     <Content Include="Content\images\title.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\images\title_screen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\se\drop.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
