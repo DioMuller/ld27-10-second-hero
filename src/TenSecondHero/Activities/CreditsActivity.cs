@@ -36,7 +36,7 @@ namespace TenSecondHero.Activities
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Space))
                 Exit(true);
         }
 
@@ -47,7 +47,7 @@ namespace TenSecondHero.Activities
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
             
-            string msg = "Press [ESC] to return to the Title Screen" ;
+            string msg = "Press [SPACE] to return to the Title Screen" ;
             int height = 50;
 
             GraphicsDevice.Clear(Color.TransparentBlack);
@@ -57,7 +57,7 @@ namespace TenSecondHero.Activities
             Vector2 position = new Vector2(Game.Window.ClientBounds.Center.X - (size.X / 2), 420);
             height += (int)(size.Y + 10);
 
-            SpriteBatch.DrawString(_smallFont, msg, position, Color.White);
+            SpriteBatch.DrawString(_smallFont, msg, position, Color.Red);
 
             
 

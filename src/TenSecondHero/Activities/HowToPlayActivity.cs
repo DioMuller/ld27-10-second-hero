@@ -10,19 +10,23 @@ using TenSecondHero.Core;
 
 namespace TenSecondHero.Activities
 {
-    class ScoreActivity  : Activity<bool>
+    class HowToPlayActivity : Activity<bool>
     {
         /// <summary>
         /// Level map.
         /// </summary>
-        public SpriteFont _font;
-        public SpriteFont _smallFont;
+        private SpriteFont _font;
+        private SpriteFont _smallFont;
 
-        public ScoreActivity(MainGame game)
+        private string[] _texts = new string[] { "Use the WASD keys move your hero.", "You have 10 seconds to do hero things!", "The objective is on the lower part of the screen", "Fly above a target to pick it.", "Drop the correct target on the green area", "Get points for doing the correct objective", "Lose points for droping the wrong target." };
+        private int _rnd;
+
+        public HowToPlayActivity(MainGame game)
             : base(game)
         {
-            _font = game.Content.Load<SpriteFont>("fonts/BigFont");
+            _font = game.Content.Load<SpriteFont>("fonts/DefaultFont");
             _smallFont = game.Content.Load<SpriteFont>("fonts/DefaultFont");
+            _rnd = new Random(DateTime.Now.Millisecond).Next(0, 4);
         }
 
         /// <summary>
@@ -42,7 +46,7 @@ namespace TenSecondHero.Activities
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            string[] texts = new string[] { "You Scored", Game.Score + " points", "In " + Game.Levels + " levels"};
+            
             string msg = "Press [SPACE] to return to the Title Screen" ;
             int height = 50;
 
@@ -54,12 +58,14 @@ namespace TenSecondHero.Activities
             height += (int)(size.Y + 10);
 
             SpriteBatch.DrawString(_smallFont, msg, position, Color.Red);
+
             
-            foreach( string str in texts )
+
+            foreach( string str in _texts )
             {
                 size = _font.MeasureString(str);
-                position = new Vector2( Game.Window.ClientBounds.Center.X - (size.X / 2), height);
-                height += (int) (size.Y + 10);
+                position = new Vector2(Game.Window.ClientBounds.Center.X - (size.X / 2), height);
+                height += (int)(size.Y + 10);
 
                 SpriteBatch.DrawString(_font, str, position, Color.White);
             }

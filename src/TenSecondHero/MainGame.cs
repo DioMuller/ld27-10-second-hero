@@ -35,6 +35,7 @@ namespace TenSecondHero
         public int Levels { get; set; }
 
         public bool ShowCredits { get; set; }
+        public bool ShowHowToPlay { get; set; }
 
         public MainGame()
             : base()
@@ -123,12 +124,18 @@ namespace TenSecondHero
                 Score = 0;
                 Levels = 0;
                 ShowCredits = false;
+                ShowHowToPlay = false;
                 await Run(new TitleActivity(this));
 
                 if( ShowCredits )
                 {
                     SoundManager.PlayBGM("Credits");
                     await Run(new CreditsActivity(this));
+                }
+                else if( ShowHowToPlay )
+                {
+                    SoundManager.PlayBGM("Credits");
+                    await Run(new HowToPlayActivity(this));
                 }
                 else
                 {

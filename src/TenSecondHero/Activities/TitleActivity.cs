@@ -35,7 +35,13 @@ namespace TenSecondHero.Activities
             if (GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Enter))
                 Exit(true);
 
-            if( Keyboard.GetState().IsKeyDown(Keys.F1) )
+            if (Keyboard.GetState().IsKeyDown(Keys.F1))
+            {
+                Game.ShowHowToPlay = true;
+                Exit(true);
+            }
+
+            if( Keyboard.GetState().IsKeyDown(Keys.F2) )
             {
                 Game.ShowCredits = true;
                 Exit(true);
@@ -55,7 +61,7 @@ namespace TenSecondHero.Activities
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            string msg = "[ENTER] Start Game - [F1] Credits";
+            string msg = "[ENTER] Start Game - [F1] How to Play";
 
             GraphicsDevice.Clear(Color.TransparentBlack);
             SpriteBatch.Begin();
@@ -65,7 +71,7 @@ namespace TenSecondHero.Activities
             Vector2 position = new Vector2(Game.Window.ClientBounds.Center.X - (size.X / 2), 420);
             SpriteBatch.DrawString(_font, msg, position, Color.Black);
 
-            msg = "[ESC] Quit Game";
+            msg = "[F2] Credits - [ESC] Quit Game";
             size = _font.MeasureString(msg);
             position = new Vector2(Game.Window.ClientBounds.Center.X - (size.X / 2), 440);
             SpriteBatch.DrawString(_font, msg, position, Color.Black);
