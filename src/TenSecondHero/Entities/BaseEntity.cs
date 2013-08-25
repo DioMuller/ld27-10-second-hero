@@ -17,7 +17,7 @@ namespace TenSecondHero.Entities
         {
             get
             {
-                return new Rectangle( (int) Position.X, (int) Position.Y , (int) BoundingSize.X, (int) BoundingSize.Y );
+                return new Rectangle( (int) (Position.X - Sprite.Origin.X), (int) (Position.Y - Sprite.Origin.Y), (int) BoundingSize.X, (int) BoundingSize.Y );
             }
         }
         public Vector2 LastPosition { get; set; }

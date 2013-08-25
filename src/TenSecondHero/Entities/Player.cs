@@ -19,9 +19,8 @@ namespace TenSecondHero.Entities
             //TODO: Add behaviors;
             Behaviors.Add(new ControllableBehavior(map, this, new KeyboardInput()));
 
-            Sprite = new Sprite("sprites/10sechero.png", new Point(16, 48), 0);
-            Sprite.Origin = new Vector2(8, 24);
-            Rotation = 1.5f;
+            Sprite = new Sprite("sprites/10sechero.png", new Point(48, 16), 0);
+            Sprite.Origin = new Vector2(20, 8);
 
             BoundingSize = new Vector2(48f, 16f);
 
