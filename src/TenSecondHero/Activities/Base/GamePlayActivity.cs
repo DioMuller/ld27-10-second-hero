@@ -8,6 +8,7 @@ using TenSecondHero.Entities;
 using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLib.Core;
+using System;
 
 namespace TenSecondHero.Activities.GamePlay
 {
@@ -47,7 +48,7 @@ namespace TenSecondHero.Activities.GamePlay
                 }
                 else if (obj.Category == "Item")
                 {
-                    _entities.Add(new Object(obj.Name, obj.Size) { Position = obj.Position });
+                    _entities.Add(new TenSecondHero.Entities.Object(obj.Name, obj.Size) { Position = obj.Position });
                 }
                 else if (obj.Category == "NPC")
                 {
@@ -98,23 +99,32 @@ namespace TenSecondHero.Activities.GamePlay
 
                 if (ent is Player)
                 {
-                    foreach (var obj in _entities.OfType<Object>() )
+                    foreach (var obj in _entities.OfType<TenSecondHero.Entities.Object>())
                     {
                         if (obj.BoundingBox.Intersects(ent.BoundingBox))
                         {
-                            if (obj.Parent == null) SoundManager.PlaySound("pickup");
+                            if (obj.Parent == null)
+                            {
+                                PickupScore(obj);
+                                SoundManager.PlaySound("pickup");
+                            }
+
                             obj.Parent = ent;
                         }
                     }
                 }
 
-                if (ent is Object)
+                if (ent is TenSecondHero.Entities.Object)
                 {
                     foreach (var chk in _entities.Where(e => e != ent && (e is Checkpoint || e is Explosion)))
                     {
                         if (chk.BoundingBox.Intersects(ent.BoundingBox))
                         {
-                            if (chk is Checkpoint) SoundManager.PlaySound("drop");
+                            if (chk is Checkpoint)
+                            {
+                                SoundManager.PlaySound("drop");
+                                DropScore(ent);
+                            }
                             _toRemoveEntity.Push(ent);
                         }
                     }
@@ -143,6 +153,10 @@ namespace TenSecondHero.Activities.GamePlay
             Vector2 position = new Vector2( 10, Game.Window.ClientBounds.Height - textSize.Y - 10);
             SpriteBatch.DrawString(_font, Description, position, Color.White);
             SpriteBatch.DrawString(_bigfont, Game.RemainingTime.Seconds.ToString(), Vector2.One * 5, Color.Red); 
+            
+            string score = "Score:" + Game.Score.ToString();
+            position = new Vector2( Game.Window.ClientBounds.Width - 10 - _bigfont.MeasureString(score).X, 10);
+            SpriteBatch.DrawString(_bigfont, score , position, Color.Black);
 
             SpriteBatch.End();
         }
@@ -168,6 +182,33 @@ namespace TenSecondHero.Activities.GamePlay
         internal void RemoveEntity(BaseEntity entity)
         {
             _toRemoveEntity.Push(entity);
+        }
+
+        /// <summary>
+        /// Adds pickup score.
+        /// </summary>
+        /// <param name="picked"></param>
+        internal void PickupScore(BaseEntity picked)
+        {
+            int score = GetScoreFor(picked);
+
+            Game.Score += score;
+        }
+
+        /// <summary>
+        /// Adds drop score and a few seconds.
+        /// </summary>
+        /// <param name="droped"></param>
+        internal void DropScore(BaseEntity droped)
+        {
+            int score = GetScoreFor(droped) * 3;
+
+            Game.Score += score;
+        }
+
+        public virtual int GetScoreFor(BaseEntity entity)
+        {
+            return 1;
         }
     }
 }

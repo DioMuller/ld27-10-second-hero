@@ -40,6 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Activities\Base\GamePlayActivity.cs" />
+    <Compile Include="Activities\ScoreActivity.cs" />
     <Compile Include="Activities\GamePlay\BombExplodeActivity.cs" />
     <Compile Include="Activities\GamePlay\CatActivity.cs" />
     <Compile Include="Activities\GamePlay\ArrestThiefActivity.cs" />
@@ -96,13 +97,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bgm\credits.wav">
+    <Content Include="Content\bgm\Credits.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\bgm\no name.wav">
+    <Content Include="Content\bgm\Press Start.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\bgm\save me.wav">
+    <Content Include="Content\bgm\Save Me.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bgm\Score Time.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bgm\We Don%27t Need a Hero.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\images\background_city01.png">

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Linq;
 using TenSecondHero.Behaviors;
+using TenSecondHero.Entities;
 
 namespace TenSecondHero.Activities.GamePlay
 {
@@ -22,6 +23,18 @@ namespace TenSecondHero.Activities.GamePlay
 
             if (_entities.OfType<Entities.Object>().Count(e => e.Name.Contains("Thief")) <= 0)
                 Exit(true);
+        }
+
+        public override int GetScoreFor(BaseEntity entity)
+        {
+            Object obj = entity as Object;
+            if( obj != null )
+            {
+                if( obj.Name == "Thief01" ) return 3;
+                else return -1;
+            }
+
+            return 0;
         }
     }
 }

@@ -28,8 +28,11 @@ namespace TenSecondHero
         SpriteBatch spriteBatch;
         TaskCompletionSource<bool> timeOutCompletionTask;
 
-        public TimeSpan GameTimeOut { get; private set; }
+        public TimeSpan GameTimeOut { get; set; }
         public TimeSpan RemainingTime { get { return GameTimeOut - GameTime.TotalGameTime; } }
+
+        public int Score { get; set; }
+        public int Levels { get; set; }
 
         public MainGame()
             : base()
@@ -114,10 +117,12 @@ namespace TenSecondHero
             //await Run(new IntroActivity(this));
             while (true)
             {
-                SoundManager.PlayBGM("credits");
+                SoundManager.PlayBGM("Press Start");
+                Score = 0;
+                Levels = 0;
                 await Run(new TitleActivity(this));
 
-                SoundManager.PlayBGM(rnd.Next()%2 == 0? "no name" : "save me");
+                SoundManager.PlayBGM(rnd.Next()%2 == 0? "We Don't Need a Hero" : "Save Me");
                 var levelOrder = Enumerable.Range(0, levelCount).OrderBy(n => rnd.Next());
 
                 var timeOutTask = StartTimeout();
@@ -128,10 +133,12 @@ namespace TenSecondHero
 
                     if (!succeded)
                         break;
+                    else
+                        Levels++;
                 }
 
-                //if (!gameTimeoutTask.IsCompleted)
-                //    await Run(new EndingActivity(this));
+                SoundManager.PlayBGM("Score Time");
+                await Run(new ScoreActivity(this));
             }
 
             Exit();

@@ -31,5 +31,18 @@ namespace TenSecondHero.Activities.GamePlay
                 Exit(true);
             }
         }
+
+        public override int GetScoreFor(Entities.BaseEntity entity)
+        {
+            TenSecondHero.Entities.Object obj = entity as TenSecondHero.Entities.Object;
+
+            if (obj != null)
+            {
+                if (obj.Name == "GrandmaCitizen") return 3;
+                else return -1;
+            }
+
+            return 0;
+        }
     }
 }
