@@ -40,6 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Activities\Base\GamePlayActivity.cs" />
+    <Compile Include="Activities\CreditsActivity.cs" />
     <Compile Include="Activities\ScoreActivity.cs" />
     <Compile Include="Activities\GamePlay\BombExplodeActivity.cs" />
     <Compile Include="Activities\GamePlay\CatActivity.cs" />

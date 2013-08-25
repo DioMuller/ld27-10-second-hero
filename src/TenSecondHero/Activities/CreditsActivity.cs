@@ -10,19 +10,23 @@ using TenSecondHero.Core;
 
 namespace TenSecondHero.Activities
 {
-    class TitleActivity  : Activity<bool>
+    class CreditsActivity : Activity<bool>
     {
         /// <summary>
         /// Level map.
         /// </summary>
-        private Texture2D _titleTexture;
-
         private SpriteFont _font;
+        private SpriteFont _smallFont;
 
-        public TitleActivity(MainGame game) : base(game)
+        private string[] _texts = new string[] { "Diogo Muller (Programming)", "João Vitor (Programming)", "Melanie Young (Art)", "Moisés 'Musashi' Santana (Music)" };
+        private int _rnd;
+
+        public CreditsActivity(MainGame game)
+            : base(game)
         {
-            _titleTexture = game.Content.Load<Texture2D>("images/title_screen.png");
             _font = game.Content.Load<SpriteFont>("fonts/DefaultFont");
+            _smallFont = game.Content.Load<SpriteFont>("fonts/DefaultFont");
+            _rnd = new Random(DateTime.Now.Millisecond).Next(0, 4);
         }
 
         /// <summary>
@@ -32,19 +36,8 @@ namespace TenSecondHero.Activities
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Enter))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit(true);
-
-            if( Keyboard.GetState().IsKeyDown(Keys.F1) )
-            {
-                Game.ShowCredits = true;
-                Exit(true);
-            }
-
-            if( Keyboard.GetState().IsKeyDown(Keys.Escape) )
-            {
-                Game.Exit();
-            }
         }
 
         /// <summary>
@@ -53,22 +46,30 @@ namespace TenSecondHero.Activities
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            string msg = "[ENTER] Start Game - [F1] Credits";
+            
+            string msg = "Press [ESC] to return to the Title Screen" ;
+            int height = 50;
 
             GraphicsDevice.Clear(Color.TransparentBlack);
             SpriteBatch.Begin();
-            SpriteBatch.Draw(_titleTexture, Vector2.Zero, Color.White);
 
-            Vector2 size = _font.MeasureString(msg);
+            Vector2 size = _smallFont.MeasureString(msg);
             Vector2 position = new Vector2(Game.Window.ClientBounds.Center.X - (size.X / 2), 420);
-            SpriteBatch.DrawString(_font, msg, position, Color.Black);
+            height += (int)(size.Y + 10);
 
-            msg = "[ESC] Quit Game";
-            size = _font.MeasureString(msg);
-            position = new Vector2(Game.Window.ClientBounds.Center.X - (size.X / 2), 440);
-            SpriteBatch.DrawString(_font, msg, position, Color.Black);
+            SpriteBatch.DrawString(_smallFont, msg, position, Color.White);
+
+            
+
+            for( int i = 0; i < _texts.Length; i++ )
+            {
+                string str = _texts[(i + _rnd) % _texts.Length];
+                size = _font.MeasureString(str);
+                position = new Vector2(Game.Window.ClientBounds.Center.X - (size.X / 2), height);
+                height += (int)(size.Y + 10);
+
+                SpriteBatch.DrawString(_font, str, position, Color.White);
+            }
 
             SpriteBatch.End();
         }
