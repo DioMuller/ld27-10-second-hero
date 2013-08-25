@@ -32,17 +32,17 @@ namespace TenSecondHero.Activities.GamePlay
             }
         }
 
-        public override int GetScoreFor(Entities.BaseEntity entity)
-        {
-            TenSecondHero.Entities.Object obj = entity as TenSecondHero.Entities.Object;
+        //public override int GetScoreFor(Entities.BaseEntity entity)
+        //{
+        //    TenSecondHero.Entities.Object obj = entity as TenSecondHero.Entities.Object;
 
-            if (obj != null)
-            {
-                if (obj.Name == "GrandmaCitizen") return 3;
-                else return -1;
-            }
+        //    if (obj != null)
+        //    {
+        //        if (obj.Name == "GrandmaCitizen") return 3;
+        //        else return -1;
+        //    }
 
-            return 0;
-        }
+        //    return 0;
+        //}
     }
 }
