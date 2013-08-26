@@ -35,7 +35,9 @@ namespace TenSecondHero.Behaviors
         public override void Update(GameTime gameTime)
         {
             Parent.LastPosition = Parent.Position;
-            Parent.Position += _input.LeftDirectional * 8;
+            Vector2 movement = (_input.LeftDirectional + _input.RightDirectional);
+            movement.Normalize();
+            Parent.Position += movement * 8;
             if (_map.IsOutsideBorders(Parent.BoundingBox))
                 Parent.Position = Parent.LastPosition;
         }

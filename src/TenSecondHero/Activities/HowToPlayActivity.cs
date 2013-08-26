@@ -23,7 +23,7 @@ namespace TenSecondHero.Activities
         {
             "You have 10 seconds to do hero things!",
             "",
-            "Use the WASD keys move your hero.",
+            "Use the Arrow/WASD keys move your hero.",
             "Fly above a target to pick it up,",
             "drop the correct target on the green area.",
             "Get points for completing the correct objective,",
